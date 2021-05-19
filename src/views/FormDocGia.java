@@ -30,6 +30,8 @@ public class FormDocGia extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         groupGioiTinh = new javax.swing.ButtonGroup();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,6 +78,8 @@ public class FormDocGia extends javax.swing.JFrame {
 
         jTextField5.setText("jTextField5");
 
+        jScrollPane2.setViewportView(jTextPane1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(java.awt.SystemColor.activeCaption);
@@ -105,14 +109,6 @@ public class FormDocGia extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("Địa chỉ");
-
-        textFieldHoTen_2.setText("jTextField7");
-
-        textFieldMaDocGia_2.setText("jTextField8");
-
-        textFieldSoDienThoai_2.setText("jTextField9");
-
-        textFieldDiaChi_2.setText("jTextField6");
 
         btnTraCuu.setIcon(new javax.swing.ImageIcon("D:\\THU HOA\\Học Kì-220\\img\\loadJJav.JPG")); // NOI18N
         btnTraCuu.setText("Tra cứu");
@@ -176,12 +172,8 @@ public class FormDocGia extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Mã đọc giả: ");
 
-        textFieldMaDocGia.setText("jTextField1");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Số điện thoại:");
-
-        textFieldSoDienThoai.setText("jTextField2");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Địa chỉ: ");
@@ -197,10 +189,6 @@ public class FormDocGia extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Ngày hết hạn");
-
-        textFieldDiaChi.setText("jTextField3");
-
-        textFieldHoTen.setText("jTextField4");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Giới tính"));
 
@@ -377,7 +365,7 @@ public class FormDocGia extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,7 +378,7 @@ public class FormDocGia extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Đọc giả    ");
@@ -417,11 +405,15 @@ public class FormDocGia extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -511,8 +503,10 @@ public class FormDocGia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JRadioButton radioNam;
     private javax.swing.JRadioButton radioNu;
     private javax.swing.JTextField textFieldDiaChi;
