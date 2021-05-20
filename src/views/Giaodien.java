@@ -5,17 +5,199 @@
  */
 package views;
 
+import dao.LB_Service;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import model.LB_User_DG;
+import model.LB_User_Muon;
+import model.LB_User_TSTL;
+import model.LB_User_DM;
+import model.LB_User_NXBTG;
+
 /**
  *
  * @author Admin
  */
 public class Giaodien extends javax.swing.JFrame {
 
+    DefaultTableModel defaultTableModel1;
+    DefaultTableModel defaultTableModel2;
+    DefaultTableModel defaultTableModel3;
+    DefaultTableModel defaultTableModel4;
+    DefaultTableModel defaultTableModel5;
+    DefaultTableModel defaultTableModel6;
+    DefaultTableModel defaultTableModel7;
+    LB_Service userService;
+
     /**
      * Creates new form NewJFrame
      */
-    public Giaodien() {
+    public Giaodien() throws SQLException {
         initComponents();
+        defaultTableModel1 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        defaultTableModel2 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        defaultTableModel3 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        defaultTableModel4 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        defaultTableModel5 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        defaultTableModel6 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        defaultTableModel7 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        userService = new LB_Service();
+        tblDocGia1.setModel(defaultTableModel1);
+        defaultTableModel1.addColumn("STT");
+        defaultTableModel1.addColumn("MaDocGia");
+        defaultTableModel1.addColumn("HoTenDG");
+        defaultTableModel1.addColumn("NgaySinh");
+        defaultTableModel1.addColumn("GioiTinh");
+        defaultTableModel1.addColumn("DiaChi");
+        defaultTableModel1.addColumn("NgayDangKi");
+        defaultTableModel1.addColumn("NgayHetHanDK");
+        defaultTableModel1.addColumn("SDT");
+
+        try {
+            List<LB_User_DG> users = userService.GetAll_DocGia();
+            for (LB_User_DG user : users) {
+                defaultTableModel1.addRow(new Object[]{user.GetSTT(), user.GetMaDG(), user.GetHoTenDG(), user.GetNgaySinh(), user.GetGioiTinh(), user.GetDiaChi(), user.GetNgayDK(), user.GetNgayHetHanDK(), user.GetSDT()});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tblMuontraSach2.setModel(defaultTableModel2);
+        defaultTableModel2.addColumn("STT");
+        defaultTableModel2.addColumn("MaMuon");
+        defaultTableModel2.addColumn("MaDG");
+        defaultTableModel2.addColumn("NgayMuon");
+        defaultTableModel2.addColumn("NgayHenTra");
+        defaultTableModel2.addColumn("SoLuong");
+        defaultTableModel2.addColumn("GhiChu");
+        defaultTableModel2.addColumn("Ngaytra");
+        try {
+            List<LB_User_TSTL> users = userService.GetAll_TS_B();
+            for (LB_User_TSTL user : users) {
+                CbbTenSach2.addItem(user.GetTenTL());
+            }
+            List<LB_User_Muon> user = userService.GetAll_Return_B();
+            for (LB_User_Muon userss : user) {
+                defaultTableModel2.addRow(new Object[]{userss.GetSTT(), userss.GetMaMuon(), userss.GetMaDG(), userss.GetNgayMuon(), userss.GetNgayHenTra(),
+                     userss.GetSoLuong(), userss.GetGhiChu(), userss.GetNgayTra()});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        tbldanhmucSach3.setModel(defaultTableModel3);
+        defaultTableModel3.addColumn("STT");
+        defaultTableModel3.addColumn("TenSach");
+        defaultTableModel3.addColumn("MaDauSach");
+        defaultTableModel3.addColumn("The Loai");
+        defaultTableModel3.addColumn("So Luong");
+        
+        List<LB_User_DM> user_ds = userService.GetAll_DS_B();
+        for(LB_User_DM user : user_ds){
+            CbbMadausach3.addItem(user.GetMaDS());
+        }
+        
+        List<LB_User_DM> user_dm = userService.GetAll_DM_B();
+        for (LB_User_DM user : user_dm) {
+            defaultTableModel3.addRow(new Object[]{user.GetSTT(), user.GetTenCS(), user.GetMaDS(), user.GetTenTL(), user.GetSoLuong()});
+        }
+        tblNhaSanXuat4.setModel(defaultTableModel4);
+        defaultTableModel4.addColumn("STT");
+        defaultTableModel4.addColumn("MaNXB");
+        defaultTableModel4.addColumn("TenNXB");
+
+        List<LB_User_NXBTG> user_NXB = userService.GetAll_NXB();
+        for (LB_User_NXBTG user : user_NXB) {
+            defaultTableModel4.addRow(new Object[]{user.GetSTT_NXB(), user.GetMaNXB(), user.GetTenNXB()});
+        }
+
+        tblTacgia4.setModel(defaultTableModel5);
+        defaultTableModel5.addColumn("STT");
+        defaultTableModel5.addColumn("MaTacGia");
+        defaultTableModel5.addColumn("TenTacGia");
+        List<LB_User_NXBTG> user_TG = userService.GetAll_TacGia();
+        for (LB_User_NXBTG user : user_TG) {
+            defaultTableModel5.addRow(new Object[]{user.GetSTT_TG(), user.GetMaTG(), user.GetTenTG()});
+        }
+
+        tblTTTuaSach5.setModel(defaultTableModel6);
+        defaultTableModel6.addColumn("STT");
+        defaultTableModel6.addColumn("MaTuaSach");
+        defaultTableModel6.addColumn("TenTuaSach");
+        defaultTableModel6.addColumn("MaTheLoai");
+        defaultTableModel6.addColumn("MaTacGia");
+
+        List<LB_User_NXBTG> user_TG1 = userService.GetAll_TacGia();
+        for (LB_User_NXBTG user : user_TG) {
+            cbbMatacGia5.addItem(user.GetMaTG());
+        }
+
+        List<LB_User_TSTL> user_TL1 = userService.GetAll_TL_B();
+        for (LB_User_TSTL user : user_TL1) {
+            cbbMatheLoai5.addItem(user.GetMaTL());
+        }
+
+        List<LB_User_TSTL> user_TS = userService.GetAll_TS_B();
+        for (LB_User_TSTL user : user_TS) {
+            defaultTableModel6.addRow(new Object[]{user.GetSTT_TS(), user.GetMaTS(), user.GetTenTL(), user.GetMaTL(), user.GetMaTG()});
+        }
+
+        tblTTTheoLoai5.setModel(defaultTableModel7);
+        defaultTableModel7.addColumn("STT");
+        defaultTableModel7.addColumn("MaTheLoai");
+        defaultTableModel7.addColumn("TenTheLoai");
+
+        List<LB_User_TSTL> user_TL = userService.GetAll_TL_B();
+        for (LB_User_TSTL user : user_TL) {
+            defaultTableModel7.addRow(new Object[]{user.GetSTT_TL(), user.GetMaTL(), user.GetTenTL()});
+        }
     }
 
     /**
@@ -57,7 +239,7 @@ public class Giaodien extends javax.swing.JFrame {
         btnLuu1 = new javax.swing.JButton();
         btnXoa1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tnlDocGia1 = new javax.swing.JTable();
+        tblDocGia1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -154,7 +336,7 @@ public class Giaodien extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         BtnNgayHethan2 = new javax.swing.JButton();
         txtNgaymuon2 = new javax.swing.JTextField();
-        txtNgaytra2 = new javax.swing.JTextField();
+        txtNgayHenTra2 = new javax.swing.JTextField();
         CbbTenSach2 = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         txtSoluong2 = new javax.swing.JTextField();
@@ -162,7 +344,7 @@ public class Giaodien extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         btTracuu2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtngayTra2 = new javax.swing.JTextField();
+        txtNgayTra2 = new javax.swing.JTextField();
         btNgaytra2 = new javax.swing.JButton();
         btThem2 = new javax.swing.JButton();
         btnXoa2 = new javax.swing.JButton();
@@ -182,7 +364,7 @@ public class Giaodien extends javax.swing.JFrame {
         btTracuu3 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         txtMaSch3 = new javax.swing.JTextField();
-        txtTuaSach3 = new javax.swing.JTextField();
+        txttheloai3 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         CbbMadausach3 = new javax.swing.JComboBox<>();
@@ -412,15 +594,17 @@ public class Giaodien extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tnlDocGia1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STT", "MaDG", "HoTen", "NgaySinh", "GioiTinh", "DiaChi", "SDT", "NgayDK", "NgayHH"
+        tblDocGia1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDocGia1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblDocGia1AncestorAdded(evt);
             }
-        ));
-        jScrollPane1.setViewportView(tnlDocGia1);
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(tblDocGia1);
 
         jButton1.setBackground(java.awt.SystemColor.activeCaption);
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/resources/thoat.png"))); // NOI18N
@@ -511,7 +695,7 @@ public class Giaodien extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel13Layout.createSequentialGroup()
@@ -537,7 +721,7 @@ public class Giaodien extends javax.swing.JFrame {
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27)
                             .addComponent(txtTenNhaSX4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btThem4_1)
                     .addComponent(btnLuu4_1))
@@ -548,16 +732,17 @@ public class Giaodien extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        tblNhaSanXuat4.setBackground(new java.awt.Color(0, 153, 204));
         tblNhaSanXuat4.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin nhà sản xuất"));
-        tblNhaSanXuat4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STT", "MaNhaSX", "TenNhaSX"
+        tblNhaSanXuat4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblNhaSanXuat4.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblNhaSanXuat4AncestorAdded(evt);
             }
-        ));
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane5.setViewportView(tblNhaSanXuat4);
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
@@ -614,7 +799,7 @@ public class Giaodien extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -643,7 +828,7 @@ public class Giaodien extends javax.swing.JFrame {
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel35)
                             .addComponent(txtTenTacgia4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btThem4_2)
                     .addComponent(btnLuu4_2))
@@ -654,14 +839,16 @@ public class Giaodien extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        tblTacgia4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STT", "MaTacgia", "TenTacgia"
+        tblTacgia4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblTacgia4.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblTacgia4AncestorAdded(evt);
             }
-        ));
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane11.setViewportView(tblTacgia4);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -669,47 +856,46 @@ public class Giaodien extends javax.swing.JFrame {
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane2.addTab("Tra cứu theo NSX - tác giả", jPanel4);
@@ -955,14 +1141,16 @@ public class Giaodien extends javax.swing.JFrame {
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        tblTTTuaSach5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STT", "MaTuaSach", "MaDausach", "TenTuasach", "Matacgia", "Matheloai"
+        tblTTTuaSach5.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblTTTuaSach5.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblTTTuaSach5AncestorAdded(evt);
             }
-        ));
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane6.setViewportView(tblTTTuaSach5);
 
         jButton18.setBackground(java.awt.SystemColor.activeCaption);
@@ -975,6 +1163,16 @@ public class Giaodien extends javax.swing.JFrame {
                 "STT", "MaTheloai", "TenTheloai"
             }
         ));
+        tblTTTheoLoai5.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblTTTheoLoai5.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblTTTheoLoai5AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane8.setViewportView(tblTTTheoLoai5);
 
         jButton19.setBackground(java.awt.SystemColor.activeCaption);
@@ -989,7 +1187,7 @@ public class Giaodien extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
@@ -1006,7 +1204,7 @@ public class Giaodien extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(490, 490, 490)
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1017,7 +1215,7 @@ public class Giaodien extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1082, Short.MAX_VALUE)
+            .addGap(0, 1094, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1233,6 +1431,11 @@ public class Giaodien extends javax.swing.JFrame {
         BtnNgayHethan2.setText("...");
 
         CbbTenSach2.setBackground(new java.awt.Color(204, 255, 255));
+        CbbTenSach2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbbTenSach2ActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Số lượng:");
 
@@ -1275,7 +1478,7 @@ public class Giaodien extends javax.swing.JFrame {
                             .addComponent(jLabel21))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNgaytra2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(txtNgayHenTra2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                             .addComponent(txtNgaymuon2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1293,7 +1496,7 @@ public class Giaodien extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addGap(26, 26, 26)
-                        .addComponent(txtngayTra2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNgayTra2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btNgaytra2)
                         .addGap(2, 2, 2))))
@@ -1326,7 +1529,7 @@ public class Giaodien extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(txtNgaytra2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNgayHenTra2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel22))
                                     .addComponent(BtnNgayHethan2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
@@ -1337,18 +1540,22 @@ public class Giaodien extends javax.swing.JFrame {
                         .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
                             .addComponent(txtGhichu2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btTracuu2)
-                        .addGap(69, 69, 69)))
-                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(txtSoluong2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtngayTra2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNgaytra2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(62, 62, 62)))
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(txtSoluong2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(btNgaytra2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel21Layout.createSequentialGroup()
+                        .addComponent(txtNgayTra2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60))))
         );
 
         btThem2.setBackground(new java.awt.Color(0, 102, 102));
@@ -1405,14 +1612,15 @@ public class Giaodien extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblMuontraSach2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "STT", "MaDG", "MaMuon", "TenSach", "Soluong", "Ngaymuon", "NgayHentra", "NgayTra"
+        tblMuontraSach2.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblMuontraSach2AncestorAdded(evt);
             }
-        ));
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane3.setViewportView(tblMuontraSach2);
 
         jButton15.setBackground(java.awt.SystemColor.activeCaption);
@@ -1465,6 +1673,16 @@ public class Giaodien extends javax.swing.JFrame {
                 "STT", "TenSach", "MaDauSach", "LoaiSach", "Soluong"
             }
         ));
+        tbldanhmucSach3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbldanhmucSach3.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tbldanhmucSach3AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane4.setViewportView(tbldanhmucSach3);
 
         btThem3.setBackground(new java.awt.Color(0, 102, 102));
@@ -1499,9 +1717,9 @@ public class Giaodien extends javax.swing.JFrame {
 
         jLabel11.setText("Mã sách:");
 
-        txtTuaSach3.addActionListener(new java.awt.event.ActionListener() {
+        txttheloai3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTuaSach3ActionPerformed(evt);
+                txttheloai3ActionPerformed(evt);
             }
         });
 
@@ -1509,7 +1727,7 @@ public class Giaodien extends javax.swing.JFrame {
 
         jLabel13.setText("Mã đầu sách:");
 
-        jLabel14.setText("Tựa sách:");
+        jLabel14.setText("Tên thể loại");
 
         jLabel15.setText("Tác giả:");
 
@@ -1574,22 +1792,26 @@ public class Giaodien extends javax.swing.JFrame {
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTenSach3)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
                                         .addComponent(txtMaSch3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btTracuu3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(CbbMadausach3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(24, 24, 24)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtTenSach3)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(CbbMadausach3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel17)
-                                    .addComponent(jLabel24))
-                                .addGap(44, 44, 44)
+                                    .addComponent(jLabel24)
+                                    .addComponent(jLabel14))
+                                .addGap(42, 42, 42)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTacGia3)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1598,15 +1820,13 @@ public class Giaodien extends javax.swing.JFrame {
                                             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(48, 48, 48)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel25)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel25)
+                                                .addGap(0, 213, Short.MAX_VALUE))
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addGap(10, 10, 10)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(50, 50, 50)
-                                .addComponent(txtTuaSach3)))
+                                                .addComponent(jScrollPane2))))
+                                    .addComponent(txttheloai3))))
                         .addGap(41, 41, 41)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btThem3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1646,7 +1866,7 @@ public class Giaodien extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(txtTuaSach3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txttheloai3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTacGia3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1670,8 +1890,8 @@ public class Giaodien extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(131, 131, 131)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1733,9 +1953,161 @@ public class Giaodien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTuaSach3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTuaSach3ActionPerformed
+    private void txttheloai3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttheloai3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTuaSach3ActionPerformed
+    }//GEN-LAST:event_txttheloai3ActionPerformed
+
+    private void tblMuontraSach2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblMuontraSach2AncestorAdded
+        // TODO add your handling code here:
+
+        ListSelectionModel listSelectionModel = tblMuontraSach2.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = tblMuontraSach2.getSelectedRow();
+
+                txtMaMuon2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 1)));
+                txtMadocgia2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 2)));
+                txtNgaymuon2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 3)));
+                txtNgayHenTra2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 4)));
+                txtSoluong2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 5)));
+                txtGhichu2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 6)));
+                txtNgayTra2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 7)));
+
+            }
+        });
+
+    }//GEN-LAST:event_tblMuontraSach2AncestorAdded
+
+    private void tblDocGia1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblDocGia1AncestorAdded
+        // TODO add your handling code here:
+
+        ListSelectionModel listSelectionModel = tblDocGia1.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = tblDocGia1.getSelectedRow();
+
+                txtMadocgia1.setText(String.valueOf(tblDocGia1.getValueAt(row, 1)));
+                txtSoDT1.setText(String.valueOf(tblDocGia1.getValueAt(row, 8)));
+                txtDiaChi1.setText(String.valueOf(tblDocGia1.getValueAt(row, 5)));
+                txtHoten1.setText(String.valueOf(tblDocGia1.getValueAt(row, 2)));
+                txtNgaySinh1.setText(String.valueOf(tblDocGia1.getValueAt(row, 3)));
+                txtNgayDangki1.setText(String.valueOf(tblDocGia1.getValueAt(row, 6)));
+                txtNgayHetHan1.setText(String.valueOf(tblDocGia1.getValueAt(row, 7)));
+                if (String.valueOf(tblDocGia1.getValueAt(row, 4)) == "Nam") {
+                    RdbtnNam1.setSelected(true);
+                } else {
+                    RdbtnNu1.setSelected(true);
+                }
+            }
+        });
+    }//GEN-LAST:event_tblDocGia1AncestorAdded
+
+    private void CbbTenSach2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbbTenSach2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbbTenSach2ActionPerformed
+
+    private void tblNhaSanXuat4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblNhaSanXuat4AncestorAdded
+        // TODO add your handling code here:
+        ListSelectionModel listSelectionModel = tblNhaSanXuat4.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = tblNhaSanXuat4.getSelectedRow();
+                txtMaNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 1)));
+                txtTenNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 2)));
+            }
+        });
+    }//GEN-LAST:event_tblNhaSanXuat4AncestorAdded
+
+    private void tblTacgia4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblTacgia4AncestorAdded
+        // TODO add your handling code here:
+        ListSelectionModel listSelectionModel = tblTacgia4.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = tblTacgia4.getSelectedRow();
+                txtMaTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 1)));
+                txtTenTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 2)));
+            }
+        });
+    }//GEN-LAST:event_tblTacgia4AncestorAdded
+
+    private void tblTTTuaSach5AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblTTTuaSach5AncestorAdded
+        // TODO add your handling code here:
+        ListSelectionModel listSelectionModel = tblTTTuaSach5.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = tblTTTuaSach5.getSelectedRow();
+                txtMatuasach5.setText(String.valueOf(tblTTTuaSach5.getValueAt(row, 1)));
+                txtTentuaSach5.setText(String.valueOf(tblTTTuaSach5.getValueAt(row, 2)));
+                cbbMatacGia5.getModel().setSelectedItem(String.valueOf(tblTTTuaSach5.getValueAt(row, 3)));
+                cbbMatheLoai5.getModel().setSelectedItem(String.valueOf(tblTTTuaSach5.getValueAt(row, 4)));
+                List<LB_User_TSTL> user_TS;
+                try {
+                    user_TS = userService.GetAll_TS_B();
+                    for (LB_User_TSTL user : user_TS) {
+                        if (user.GetMaTS().equals(String.valueOf(tblTTTuaSach5.getValueAt(row, 1)))) {
+                            txtNDtomtat5.setText(user.GetTomtat());
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+    }//GEN-LAST:event_tblTTTuaSach5AncestorAdded
+
+    private void tblTTTheoLoai5AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblTTTheoLoai5AncestorAdded
+        // TODO add your handling code here:
+        ListSelectionModel listSelectionModel = tblTTTheoLoai5.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = tblTTTheoLoai5.getSelectedRow();         
+                txtMaTheLoai5.setText(String.valueOf(tblTTTheoLoai5.getValueAt(row, 1)));
+                txtTenTheLoai5.setText(String.valueOf(tblTTTheoLoai5.getValueAt(row, 2)));
+            }
+        });
+    }//GEN-LAST:event_tblTTTheoLoai5AncestorAdded
+
+    private void tbldanhmucSach3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbldanhmucSach3AncestorAdded
+        // TODO add your handling code here:
+        
+        ListSelectionModel listSelectionModel = tbldanhmucSach3.getSelectionModel();
+        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = tbldanhmucSach3.getSelectedRow();         
+             
+                try {
+                    List<LB_User_DM> user_dm = userService.GetAll_DM_B();
+                    for(LB_User_DM user : user_dm){
+                    
+                    if (user.GetTenCS().equals(String.valueOf(tbldanhmucSach3.getValueAt(row, 1)))){
+                        txtMaSch3.setText(user.getMaCS());
+                    }
+                    
+                     if (user.GetMaDS().equals(String.valueOf(tbldanhmucSach3.getValueAt(row,2 )))){
+                            txttheloai3.setText(user.GetTenTL());
+                        }
+                }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
+                txtTenSach3.setText(String.valueOf(tbldanhmucSach3.getValueAt(row, 1)));
+                CbbMadausach3.getModel().setSelectedItem(String.valueOf(tbldanhmucSach3.getValueAt(row, 2)));
+                 
+            }
+               
+        });
+        
+    }//GEN-LAST:event_tbldanhmucSach3AncestorAdded
 
     /**
      * @param args the command line arguments
@@ -1768,7 +2140,11 @@ public class Giaodien extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Giaodien().setVisible(true);
+                try {
+                    new Giaodien().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -1910,6 +2286,7 @@ public class Giaodien extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdbtnDSDGDangki;
     private javax.swing.JRadioButton rdbtnDSDGtrehan;
     private javax.swing.JTable tblChiTietPhieuMuon6;
+    private javax.swing.JTable tblDocGia1;
     private javax.swing.JTable tblMuontraSach2;
     private javax.swing.JTable tblNhaSanXuat4;
     private javax.swing.JTable tblTTTheoLoai5;
@@ -1917,7 +2294,6 @@ public class Giaodien extends javax.swing.JFrame {
     private javax.swing.JTable tblTacgia4;
     private javax.swing.JTable tblThongKe6;
     private javax.swing.JTable tbldanhmucSach3;
-    private javax.swing.JTable tnlDocGia1;
     private javax.swing.JTextField txtDen6;
     private javax.swing.JTextField txtDiaChi1;
     private javax.swing.JTextField txtGhichu2;
@@ -1934,10 +2310,11 @@ public class Giaodien extends javax.swing.JFrame {
     private javax.swing.JTextArea txtNDtomluoc3;
     private javax.swing.JTextArea txtNDtomtat5;
     private javax.swing.JTextField txtNgayDangki1;
+    private javax.swing.JTextField txtNgayHenTra2;
     private javax.swing.JTextField txtNgayHetHan1;
     private javax.swing.JTextField txtNgaySinh1;
+    private javax.swing.JTextField txtNgayTra2;
     private javax.swing.JTextField txtNgaymuon2;
-    private javax.swing.JTextField txtNgaytra2;
     private javax.swing.JTextField txtSoDT1;
     private javax.swing.JTextField txtSoluong2;
     private javax.swing.JTextField txtTacGia3;
@@ -1946,8 +2323,7 @@ public class Giaodien extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenTacgia4;
     private javax.swing.JTextField txtTenTheLoai5;
     private javax.swing.JTextField txtTentuaSach5;
-    private javax.swing.JTextField txtTuaSach3;
     private javax.swing.JTextField txtTungay6;
-    private javax.swing.JTextField txtngayTra2;
+    private javax.swing.JTextField txttheloai3;
     // End of variables declaration//GEN-END:variables
 }

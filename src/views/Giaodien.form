@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup3">
     </Component>
@@ -483,22 +483,15 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tnlDocGia1">
+                <Component class="javax.swing.JTable" name="tblDocGia1">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="0">
-                        <Column editable="true" title="STT" type="java.lang.Object"/>
-                        <Column editable="true" title="MaDG" type="java.lang.Object"/>
-                        <Column editable="true" title="HoTen" type="java.lang.Object"/>
-                        <Column editable="true" title="NgaySinh" type="java.lang.Object"/>
-                        <Column editable="true" title="GioiTinh" type="java.lang.Object"/>
-                        <Column editable="true" title="DiaChi" type="java.lang.Object"/>
-                        <Column editable="true" title="SDT" type="java.lang.Object"/>
-                        <Column editable="true" title="NgayDK" type="java.lang.Object"/>
-                        <Column editable="true" title="NgayHH" type="java.lang.Object"/>
-                      </Table>
+                    <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                      <JTableSelectionModel selectionMode="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tblDocGia1AncestorAdded"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -526,7 +519,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -534,9 +527,9 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -553,40 +546,38 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel13" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jButton17" min="-2" pref="110" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPane5" alignment="0" pref="517" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel16" max="32767" attributes="0"/>
-                              <Component id="jScrollPane11" pref="549" max="32767" attributes="0"/>
+                              <Component id="jPanel13" max="32767" attributes="0"/>
+                              <Component id="jScrollPane5" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jScrollPane11" pref="549" max="32767" attributes="0"/>
+                              <Component id="jPanel16" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jButton17" min="-2" pref="110" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel13" min="-2" pref="310" max="-2" attributes="0"/>
+                              <Component id="jPanel16" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jScrollPane5" min="-2" pref="168" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButton17" min="-2" pref="51" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPane11" min="-2" pref="168" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="203" max="-2" attributes="0"/>
+                              <Component id="jScrollPane11" min="-2" pref="203" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jButton17" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace pref="43" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -637,7 +628,7 @@
                                       <Component id="jLabel26" min="-2" pref="53" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jLabel27" max="32767" attributes="0"/>
+                                  <Component id="jLabel27" pref="167" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -673,7 +664,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btThem4_1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnLuu4_1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -799,20 +790,10 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblNhaSanXuat4">
                       <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="cc" green="99" red="0" type="rgb"/>
-                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="Th&#xf4;ng tin nh&#xe0; s&#x1ea3;n xu&#x1ea5;t"/>
                           </Border>
-                        </Property>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="3" rowCount="0">
-                            <Column editable="true" title="STT" type="java.lang.Object"/>
-                            <Column editable="true" title="MaNhaSX" type="java.lang.Object"/>
-                            <Column editable="true" title="TenNhaSX" type="java.lang.Object"/>
-                          </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
@@ -833,10 +814,16 @@
                             </Column>
                           </TableColumnModel>
                         </Property>
+                        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                          <JTableSelectionModel selectionMode="0"/>
+                        </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tblNhaSanXuat4AncestorAdded"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -871,7 +858,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel35" pref="185" max="32767" attributes="0"/>
+                                  <Component id="jLabel35" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel33" min="-2" pref="103" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -911,7 +898,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btThem4_2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnLuu4_2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1037,13 +1024,6 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblTacgia4">
                       <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="3" rowCount="0">
-                            <Column editable="true" title="STT" type="java.lang.Object"/>
-                            <Column editable="true" title="MaTacgia" type="java.lang.Object"/>
-                            <Column editable="true" title="TenTacgia" type="java.lang.Object"/>
-                          </Table>
-                        </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -1063,10 +1043,16 @@
                             </Column>
                           </TableColumnModel>
                         </Property>
+                        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                          <JTableSelectionModel selectionMode="0"/>
+                        </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tblTacgia4AncestorAdded"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1086,7 +1072,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1082" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1094" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -1125,7 +1111,7 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jScrollPane6" min="-2" pref="579" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane8" min="-2" pref="497" max="-2" attributes="0"/>
+                          <Component id="jScrollPane8" min="-2" pref="509" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1148,7 +1134,7 @@
                               <Component id="jScrollPane6" min="-2" pref="153" max="-2" attributes="0"/>
                               <Component id="jScrollPane8" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="jButton19" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="490" max="-2" attributes="0"/>
                           <Component id="jButton18" min="-2" pref="51" max="-2" attributes="0"/>
@@ -1650,17 +1636,13 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tblTTTuaSach5">
                       <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="0">
-                            <Column editable="true" title="STT" type="java.lang.Object"/>
-                            <Column editable="true" title="MaTuaSach" type="java.lang.Object"/>
-                            <Column editable="true" title="MaDausach" type="java.lang.Object"/>
-                            <Column editable="true" title="TenTuasach" type="java.lang.Object"/>
-                            <Column editable="true" title="Matacgia" type="java.lang.Object"/>
-                            <Column editable="true" title="Matheloai" type="java.lang.Object"/>
-                          </Table>
+                        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                          <JTableSelectionModel selectionMode="0"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tblTTTuaSach5AncestorAdded"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1687,7 +1669,13 @@
                             <Column editable="true" title="TenTheloai" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                          <JTableSelectionModel selectionMode="0"/>
+                        </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tblTTTheoLoai5AncestorAdded"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2154,7 +2142,7 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtNgaytra2" pref="170" max="32767" attributes="0"/>
+                                          <Component id="txtNgayHenTra2" pref="170" max="32767" attributes="0"/>
                                           <Component id="txtNgaymuon2" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -2177,7 +2165,7 @@
                                       <EmptySpace pref="141" max="32767" attributes="0"/>
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="txtngayTra2" min="-2" pref="191" max="-2" attributes="0"/>
+                                      <Component id="txtNgayTra2" min="-2" pref="191" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btNgaytra2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -2221,7 +2209,7 @@
                                               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="txtNgaytra2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                      <Component id="txtNgayHenTra2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Component id="BtnNgayHethan2" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
@@ -2238,22 +2226,29 @@
                                           <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtGhichu2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                                      <EmptySpace pref="39" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="btTracuu2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtSoluong2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtngayTra2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="btNgaytra2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtSoluong2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btNgaytra2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="txtNgayTra2" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="51" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2318,7 +2313,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtNgaymuon2">
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtNgaytra2">
+                    <Component class="javax.swing.JTextField" name="txtNgayHenTra2">
                     </Component>
                     <Component class="javax.swing.JComboBox" name="CbbTenSach2">
                       <Properties>
@@ -2329,6 +2324,9 @@
                           <StringArray count="0"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CbbTenSach2ActionPerformed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
@@ -2369,7 +2367,7 @@
                         <Property name="text" type="java.lang.String" value="Ng&#xe0;y tr&#x1ea3;:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtngayTra2">
+                    <Component class="javax.swing.JTextField" name="txtNgayTra2">
                     </Component>
                     <Component class="javax.swing.JButton" name="btNgaytra2">
                       <Properties>
@@ -2465,20 +2463,9 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tblMuontraSach2">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="8" rowCount="0">
-                        <Column editable="true" title="STT" type="java.lang.Object"/>
-                        <Column editable="true" title="MaDG" type="java.lang.Object"/>
-                        <Column editable="true" title="MaMuon" type="java.lang.Object"/>
-                        <Column editable="true" title="TenSach" type="java.lang.Object"/>
-                        <Column editable="true" title="Soluong" type="java.lang.Object"/>
-                        <Column editable="true" title="Ngaymuon" type="java.lang.Object"/>
-                        <Column editable="true" title="NgayHentra" type="java.lang.Object"/>
-                        <Column editable="true" title="NgayTra" type="java.lang.Object"/>
-                      </Table>
-                    </Property>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tblMuontraSach2AncestorAdded"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -2534,17 +2521,22 @@
                                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel12" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtTenSach3" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                               <Component id="txtMaSch3" min="-2" pref="189" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="btTracuu3" min="-2" pref="147" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="CbbMadausach3" min="-2" pref="188" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="txtTenSach3" max="32767" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="CbbMadausach3" min="-2" pref="188" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -2553,8 +2545,9 @@
                                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtTacGia3" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
@@ -2564,20 +2557,18 @@
                                               </Group>
                                               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="213" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
                                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                                      <Component id="jScrollPane2" min="-2" pref="272" max="-2" attributes="0"/>
+                                                      <Component id="jScrollPane2" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="txttheloai3" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                      <Component id="txtTuaSach3" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -2632,7 +2623,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTuaSach3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="txttheloai3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -2665,8 +2656,8 @@
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" min="-2" pref="179" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="228" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                               <Component id="jButton16" min="-2" pref="51" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -2720,7 +2711,13 @@
                         <Column editable="true" title="Soluong" type="java.lang.Object"/>
                       </Table>
                     </Property>
+                    <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                      <JTableSelectionModel selectionMode="0"/>
+                    </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="tbldanhmucSach3AncestorAdded"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -2816,9 +2813,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtMaSch3">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtTuaSach3">
+            <Component class="javax.swing.JTextField" name="txttheloai3">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTuaSach3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttheloai3ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
@@ -2843,7 +2840,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
-                <Property name="text" type="java.lang.String" value="T&#x1ef1;a s&#xe1;ch:"/>
+                <Property name="text" type="java.lang.String" value="T&#xea;n th&#x1ec3; lo&#x1ea1;i"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
