@@ -17,6 +17,7 @@ public class LB_User_DM {
     private String TenTL;
     private int SoLuong;
     private String TomTat;
+    private String MaTS;
     public int GetSTT(){
         return STT; 
     }
@@ -59,5 +60,10 @@ public class LB_User_DM {
     public void SetTomTat(String TomTat){
         this.TomTat = TomTat;
     }
-    
+    public String GetMaTS(){
+        return MaTS;
+    }
+    public void SetMaTS(String MaTS){
+        this.MaTS = MaTS;
+    }
 }

@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class LB_User_Muon {
     private int STT;
+    private String MaCS;
     private String MaMuon;
     private Date NgayMuon;
     private Date NgayHenTra;
@@ -25,6 +26,12 @@ public class LB_User_Muon {
     }
     public void SetSTT(int STT){
         this.STT = STT;
+    }
+    public String GetMaCS(){
+        return MaCS;
+    }
+    public void SetMaCS(String MaCS){
+        this.MaCS = MaCS;
     }
     public String GetMaMuon(){
         return MaMuon;
