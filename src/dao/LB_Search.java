@@ -26,16 +26,7 @@ import model.LB_User_DM;
  */
 public class LB_Search {
 
-    private Connection con;
-
-    public LB_Search() {
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=MANAGE_LIBRARY;"
-                    + "username=sa;password=tttl1209ntk0208");
-        } catch (Exception e) {
-        }
-    }
+    private Connection con = KetNoiSQL.getConnection();
 
     //Tim kiem theo MaDocGia
     public List<LB_User_DG> Search_DocGia_M(String madg) throws SQLException {

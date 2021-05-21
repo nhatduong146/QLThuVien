@@ -26,16 +26,7 @@ import model.LB_User_DM;
  */
 public class LB_Service {
 
-    private Connection con;
-
-    public LB_Service() {
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            con = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=MANAGE_LIBRARY;"
-                    + "username=sa;password=tttl1209ntk0208");
-        } catch (Exception e) {
-        }
-    }
+    private Connection con = KetNoiSQL.getConnection();
 
     /*Select toan bo du lieu tu tblDocGia*/
     public List<LB_User_DG> GetAll_DocGia() throws SQLException {
