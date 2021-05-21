@@ -40,174 +40,14 @@ public class Giaodien extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public Giaodien() throws SQLException {
+    public Giaodien(){
         initComponents();
-        defaultTableModel1 = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        defaultTableModel2 = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        defaultTableModel3 = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        defaultTableModel4 = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        defaultTableModel5 = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        defaultTableModel6 = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        defaultTableModel7 = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        userService = new LB_Service();
-        tblDocGia1.setModel(defaultTableModel1);
-        defaultTableModel1.addColumn("STT");
-        defaultTableModel1.addColumn("MaDocGia");
-        defaultTableModel1.addColumn("HoTenDG");
-        defaultTableModel1.addColumn("NgaySinh");
-        defaultTableModel1.addColumn("GioiTinh");
-        defaultTableModel1.addColumn("DiaChi");
-        defaultTableModel1.addColumn("NgayDangKi");
-        defaultTableModel1.addColumn("NgayHetHanDK");
-        defaultTableModel1.addColumn("SDT");
-
-        try {
-            List<LB_User_DG> users = userService.GetAll_DocGia();
-            for (LB_User_DG user : users) {
-                defaultTableModel1.addRow(new Object[]{user.GetSTT(), user.GetMaDG(), user.GetHoTenDG(), user.GetNgaySinh(), user.GetGioiTinh(), user.GetDiaChi(), user.GetNgayDK(), user.GetNgayHetHanDK(), user.GetSDT()});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tblMuontraSach2.setModel(defaultTableModel2);
-        defaultTableModel2.addColumn("STT");
-        defaultTableModel2.addColumn("MaMuon");
-        defaultTableModel2.addColumn("MaDG");
-        defaultTableModel2.addColumn("NgayMuon");
-        defaultTableModel2.addColumn("NgayHenTra");
-        defaultTableModel2.addColumn("SoLuong");
-        defaultTableModel2.addColumn("GhiChu");
-        defaultTableModel2.addColumn("Ngaytra");
-        try {
-            List<LB_User_TSTL> users = userService.GetAll_TS_B();
-            for (LB_User_TSTL user : users) {
-                CbbTenSach2.addItem(user.GetTenTL());
-            }
-            List<LB_User_Muon> user = userService.GetAll_Return_B();
-            for (LB_User_Muon userss : user) {
-                defaultTableModel2.addRow(new Object[]{userss.GetSTT(), userss.GetMaMuon(), userss.GetMaDG(), userss.GetNgayMuon(), userss.GetNgayHenTra(),
-                    userss.GetSoLuong(), userss.GetGhiChu(), userss.GetNgayTra()});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        tbldanhmucSach3.setModel(defaultTableModel3);
-        defaultTableModel3.addColumn("STT");
-        defaultTableModel3.addColumn("TenSach");
-        defaultTableModel3.addColumn("MaDauSach");
-        defaultTableModel3.addColumn("The Loai");
-        defaultTableModel3.addColumn("So Luong");
-
-        List<LB_User_DM> user_ds = userService.GetAll_DS_B();
-        for (LB_User_DM user : user_ds) {
-            CbbMadausach3.addItem(user.GetMaDS());
-        }
-
-        List<LB_User_DM> user_dm = userService.GetAll_DM_B();
-        for (LB_User_DM user : user_dm) {
-            defaultTableModel3.addRow(new Object[]{user.GetSTT(), user.GetTenCS(), user.GetMaDS(), user.GetTenTL(), user.GetSoLuong()});
-        }
-        tblNhaSanXuat4.setModel(defaultTableModel4);
-        defaultTableModel4.addColumn("STT");
-        defaultTableModel4.addColumn("MaNXB");
-        defaultTableModel4.addColumn("TenNXB");
-
-        List<LB_User_NXBTG> user_NXB = userService.GetAll_NXB();
-        for (LB_User_NXBTG user : user_NXB) {
-            defaultTableModel4.addRow(new Object[]{user.GetSTT_NXB(), user.GetMaNXB(), user.GetTenNXB()});
-        }
-
-        tblTacgia4.setModel(defaultTableModel5);
-        defaultTableModel5.addColumn("STT");
-        defaultTableModel5.addColumn("MaTacGia");
-        defaultTableModel5.addColumn("TenTacGia");
-        List<LB_User_NXBTG> user_TG = userService.GetAll_TacGia();
-        for (LB_User_NXBTG user : user_TG) {
-            defaultTableModel5.addRow(new Object[]{user.GetSTT_TG(), user.GetMaTG(), user.GetTenTG()});
-        }
-
-        tblTTTuaSach5.setModel(defaultTableModel6);
-        defaultTableModel6.addColumn("STT");
-        defaultTableModel6.addColumn("MaTuaSach");
-        defaultTableModel6.addColumn("TenTuaSach");
-        defaultTableModel6.addColumn("MaTheLoai");
-        defaultTableModel6.addColumn("MaTacGia");
-
-        List<LB_User_NXBTG> user_TG1 = userService.GetAll_TacGia();
-        for (LB_User_NXBTG user : user_TG) {
-            cbbMatacGia5.addItem(user.GetMaTG());
-        }
-
-        List<LB_User_TSTL> user_TL1 = userService.GetAll_TL_B();
-        for (LB_User_TSTL user : user_TL1) {
-            cbbMatheLoai5.addItem(user.GetMaTL());
-        }
-
-        List<LB_User_TSTL> user_TS = userService.GetAll_TS_B();
-        for (LB_User_TSTL user : user_TS) {
-            defaultTableModel6.addRow(new Object[]{user.GetSTT_TS(), user.GetMaTS(), user.GetTenTL(), user.GetMaTL(), user.GetMaTG()});
-        }
-
-        tblTTTheoLoai5.setModel(defaultTableModel7);
-        defaultTableModel7.addColumn("STT");
-        defaultTableModel7.addColumn("MaTheLoai");
-        defaultTableModel7.addColumn("TenTheLoai");
-
-        List<LB_User_TSTL> user_TL = userService.GetAll_TL_B();
-        for (LB_User_TSTL user : user_TL) {
-            defaultTableModel7.addRow(new Object[]{user.GetSTT_TL(), user.GetMaTL(), user.GetTenTL()});
-        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -558,10 +398,10 @@ public class Giaodien extends javax.swing.JFrame {
 
         tblDocGia1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblDocGia1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblDocGia1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -688,10 +528,10 @@ public class Giaodien extends javax.swing.JFrame {
         tblNhaSanXuat4.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin nhà sản xuất"));
         tblNhaSanXuat4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblNhaSanXuat4.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblNhaSanXuat4AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -789,10 +629,10 @@ public class Giaodien extends javax.swing.JFrame {
 
         tblTacgia4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblTacgia4.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblTacgia4AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1086,10 +926,10 @@ public class Giaodien extends javax.swing.JFrame {
 
         tblTTTuaSach5.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblTTTuaSach5.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblTTTuaSach5AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1100,10 +940,10 @@ public class Giaodien extends javax.swing.JFrame {
 
         tblTTTheoLoai5.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblTTTheoLoai5.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblTTTheoLoai5AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1120,7 +960,7 @@ public class Giaodien extends javax.swing.JFrame {
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 969, Short.MAX_VALUE))
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane8))
         );
@@ -1510,10 +1350,10 @@ public class Giaodien extends javax.swing.JFrame {
 
         tblMuontraSach2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblMuontraSach2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblMuontraSach2AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1534,9 +1374,9 @@ public class Giaodien extends javax.swing.JFrame {
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -1568,10 +1408,10 @@ public class Giaodien extends javax.swing.JFrame {
         ));
         tbldanhmucSach3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbldanhmucSach3.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tbldanhmucSach3AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -1625,6 +1465,12 @@ public class Giaodien extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Mã đầu sách:");
+
+        CbbMadausach3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbbMadausach3ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -1829,7 +1675,9 @@ public class Giaodien extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1092, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1092, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1850,61 +1698,11 @@ public class Giaodien extends javax.swing.JFrame {
     private void tblMuontraSach2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblMuontraSach2AncestorAdded
         // TODO add your handling code here:
 
-        ListSelectionModel listSelectionModel = tblMuontraSach2.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int row = tblMuontraSach2.getSelectedRow();
-
-                txtMaMuon2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 1)));
-                txtMadocgia2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 2)));
-                txtSoluong2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 5)));
-                txtGhichu2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 6)));
-                try {
-                    List<LB_User_Muon> user_r = userService.GetAll_Return_B();
-                    for (LB_User_Muon user : user_r) {
-                        if (user.GetMaMuon().equals(String.valueOf(tblMuontraSach2.getValueAt(row, 1)))) {
-                            CbbTenSach2.getModel().setSelectedItem(user.GetMaCS());
-                            List<LB_User_DM> user_cs = userService.GetAll_DM_B();
-                            for (LB_User_DM users : user_cs) {
-                                if (users.getMaCS().equals(user.GetMaCS())) {
-                                    CbbTenSach2.getModel().setSelectedItem(users.GetTenCS());
-                                }
-                            }
-                        }
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }
-        });
-
     }//GEN-LAST:event_tblMuontraSach2AncestorAdded
 
     private void tblDocGia1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblDocGia1AncestorAdded
         // TODO add your handling code here:
 
-        ListSelectionModel listSelectionModel = tblDocGia1.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int row = tblDocGia1.getSelectedRow();
-
-                txtMadocgia1.setText(String.valueOf(tblDocGia1.getValueAt(row, 1)));
-                txtSoDT1.setText(String.valueOf(tblDocGia1.getValueAt(row, 8)));
-                txtDiaChi1.setText(String.valueOf(tblDocGia1.getValueAt(row, 5)));
-                txtHoten1.setText(String.valueOf(tblDocGia1.getValueAt(row, 2)));
-//                txtNgaySinh1.setDate((String.valueOf(tblDocGia1.getValueAt(row,3))));
-//                txtNgayDK1.setDate((String.valueOf(tblDocGia1.getValueAt(row,6))));
-//                txtNgayEndDK1.setDate((String.valueOf(tblDocGia1.getValueAt(row,7))));
-                if (String.valueOf(tblDocGia1.getValueAt(row, 4)) == "Nam") {
-                    RdbtnNam1.setSelected(true);
-                } else {
-                    RdbtnNu1.setSelected(true);
-                }
-            }
-        });
     }//GEN-LAST:event_tblDocGia1AncestorAdded
 
     private void CbbTenSach2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbbTenSach2ActionPerformed
@@ -1913,140 +1711,22 @@ public class Giaodien extends javax.swing.JFrame {
 
     private void tblNhaSanXuat4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblNhaSanXuat4AncestorAdded
         // TODO add your handling code here:
-        ListSelectionModel listSelectionModel = tblNhaSanXuat4.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int row = tblNhaSanXuat4.getSelectedRow();
-                txtMaNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 1)));
-                txtTenNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 2)));
-            }
-        });
     }//GEN-LAST:event_tblNhaSanXuat4AncestorAdded
 
     private void tblTacgia4AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblTacgia4AncestorAdded
-        // TODO add your handling code here:
-        ListSelectionModel listSelectionModel = tblTacgia4.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int row = tblTacgia4.getSelectedRow();
-                txtMaTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 1)));
-                txtTenTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 2)));
-            }
-        });
+        // TODO add your handling code here
     }//GEN-LAST:event_tblTacgia4AncestorAdded
 
     private void tblTTTuaSach5AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblTTTuaSach5AncestorAdded
         // TODO add your handling code here:
-        ListSelectionModel listSelectionModel = tblTTTuaSach5.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int row = tblTTTuaSach5.getSelectedRow();
-                txtMatuasach5.setText(String.valueOf(tblTTTuaSach5.getValueAt(row, 1)));
-                txtTentuaSach5.setText(String.valueOf(tblTTTuaSach5.getValueAt(row, 2)));
-                cbbMatacGia5.getModel().setSelectedItem(String.valueOf(tblTTTuaSach5.getValueAt(row, 3)));
-                cbbMatheLoai5.getModel().setSelectedItem(String.valueOf(tblTTTuaSach5.getValueAt(row, 4)));
-                List<LB_User_TSTL> user_TS;
-                try {
-                    user_TS = userService.GetAll_TS_B();
-                    for (LB_User_TSTL user : user_TS) {
-                        if (user.GetMaTS().equals(String.valueOf(tblTTTuaSach5.getValueAt(row, 1)))) {
-                            txtNDtomtat5.setText(user.GetTomtat());
-                        }
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }
-        });
     }//GEN-LAST:event_tblTTTuaSach5AncestorAdded
 
     private void tblTTTheoLoai5AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblTTTheoLoai5AncestorAdded
         // TODO add your handling code here:
-        ListSelectionModel listSelectionModel = tblTTTheoLoai5.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int row = tblTTTheoLoai5.getSelectedRow();
-                txtMaTheLoai5.setText(String.valueOf(tblTTTheoLoai5.getValueAt(row, 1)));
-                txtTenTheLoai5.setText(String.valueOf(tblTTTheoLoai5.getValueAt(row, 2)));
-            }
-        });
     }//GEN-LAST:event_tblTTTheoLoai5AncestorAdded
 
     private void tbldanhmucSach3AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tbldanhmucSach3AncestorAdded
         // TODO add your handling code here:
-
-        ListSelectionModel listSelectionModel = tbldanhmucSach3.getSelectionModel();
-        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int row = tbldanhmucSach3.getSelectedRow();
-
-                try {
-                    List<LB_User_DM> user_dm = userService.GetAll_DM_B();
-                    for (LB_User_DM user : user_dm) {
-
-                        if (user.GetTenCS().equals(String.valueOf(tbldanhmucSach3.getValueAt(row, 1)))) {
-                            txtMaSch3.setText(user.getMaCS());
-                        }
-
-                        if (user.GetMaDS().equals(String.valueOf(tbldanhmucSach3.getValueAt(row, 2)))) {
-                            txttheloai3.setText(user.GetTenTL());
-                        }
-                    }
-                    String str = "";
-                    String str1 = "";
-                    List<LB_User_DM> user_dm1 = userService.GetAll_DM_B();
-                    for (LB_User_DM user : user_dm1) {
-                        if (String.valueOf(tbldanhmucSach3.getValueAt(row, 2)).equals(user.GetMaDS())) {
-                            str = str + user.GetMaDS();
-
-                        }
-                    }
-                    List<LB_User_DM> user_dm2 = userService.GetAll_DS_B();
-                    for (LB_User_DM user : user_dm2) {
-                        if (user.GetMaDS().equals(str)) {
-
-                            str1 = str1 + user.GetMaTS();
-
-                        }
-                    }
-                    List<LB_User_TSTL> usre_ts = userService.GetAll_TS_B();
-                    for (LB_User_TSTL user : usre_ts) {
-
-                        if (user.GetMaTS().equals(str1)) {
-                            List<LB_User_NXBTG> user_tg = userService.GetAll_TacGia();
-                            for (LB_User_NXBTG users : user_tg) {
-                                if (user.GetMaTG().equals(users.GetMaTG())) {
-                                    txtTacGia3.setText(users.GetTenTG());
-                                }
-                            }
-                        }
-                    }
-                    if (Integer.valueOf(String.valueOf(tbldanhmucSach3.getValueAt(row, 4))) <= 0) {
-                        RdbtnDamuon3.setSelected(true);
-                    } else {
-                        RdbtnChuamuon3.setSelected(true);
-                    }
-                    List<LB_User_DM> users = userService.GetAll_DM_B();
-                    for (LB_User_DM user : users) {
-                        if (user.GetMaDS().equals(String.valueOf(tbldanhmucSach3.getValueAt(row, 2)))) {
-                            txtNDtomluoc3.setText(user.GetTomTat());
-                        }
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                txtTenSach3.setText(String.valueOf(tbldanhmucSach3.getValueAt(row, 1)));
-                CbbMadausach3.getModel().setSelectedItem(String.valueOf(tbldanhmucSach3.getValueAt(row, 2)));
-
-            }
-        });
 
     }//GEN-LAST:event_tbldanhmucSach3AncestorAdded
 
@@ -2054,6 +1734,10 @@ public class Giaodien extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btTracuu4_1ActionPerformed
+
+    private void CbbMadausach3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbbMadausach3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbbMadausach3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2086,11 +1770,7 @@ public class Giaodien extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new Giaodien().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
-                }
+              new Giaodien().setVisible(true);
             }
         });
     }

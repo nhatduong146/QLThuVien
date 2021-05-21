@@ -10,10 +10,10 @@ public class LB_User_DG {
     private int STT;
     private String MaDG;
     private String HotenDG;
-    private Date NgaySinh;
+    private String NgaySinh;
     private String DiaChi;
-    private Date NgayDK;
-    private Date NgayHetHanDK;
+    private String NgayDK;
+    private String NgayHetHanDK;
     private String SDT;
     private String GioiTinh;
     
@@ -35,10 +35,10 @@ public class LB_User_DG {
     public void SetHoTenDG(String HoTenDG){
         this.HotenDG=HoTenDG;
     }
-    public Date GetNgaySinh(){
+    public String GetNgaySinh(){
         return NgaySinh;
     }
-    public void SetNgaySinh(Date NgaySinh){
+    public void SetNgaySinh(String NgaySinh){
         this.NgaySinh=NgaySinh;
     }  
     public String GetDiaChi(){
@@ -47,16 +47,16 @@ public class LB_User_DG {
     public void SetDiaChi(String DiaChi){
         this.DiaChi=DiaChi;
     }
-    public Date GetNgayDK(){
+    public String GetNgayDK(){
         return NgayDK;
     }
-    public void SetNgayDK(Date NgayDK){
+    public void SetNgayDK(String NgayDK){
         this.NgayDK=NgayDK;
     }
-    public Date GetNgayHetHanDK(){
+    public String GetNgayHetHanDK(){
         return NgayHetHanDK;
     }
-    public void SetNgayHetHanDK(Date NgayHetHanDK){
+    public void SetNgayHetHanDK(String NgayHetHanDK){
         this.NgayHetHanDK=NgayHetHanDK;
     }
     public String GetGioiTinh(){

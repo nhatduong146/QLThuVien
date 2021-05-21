@@ -46,10 +46,10 @@ public class LB_Service {
             } else {
                 lb_user.SetGioiTinh("Nữ");
             }
-            lb_user.SetNgaySinh(rs.getDate("NgaySinh"));
+            lb_user.SetNgaySinh(rs.getString("NgaySinh"));
             lb_user.SetDiaChi(rs.getString("DiaChi"));
-            lb_user.SetNgayDK(rs.getDate("NgayDangKi"));
-            lb_user.SetNgayHetHanDK(rs.getDate("NgayHetHanDK"));
+            lb_user.SetNgayDK(rs.getString("NgayDangKi"));
+            lb_user.SetNgayHetHanDK(rs.getString("NgayHetHanDK"));
             lb_user.SetSDT(rs.getString("SoDienThoai"));
             users.add(lb_user);
         }
@@ -69,7 +69,7 @@ public class LB_Service {
             LB_User_Muon lb_user = new LB_User_Muon();
             lb_user.SetSTT(rs.getInt("STT"));
             lb_user.SetMaMuon(rs.getString("MaMuon"));
-            lb_user.SetNgayMuon(rs.getDate("NgayMuon"));
+            lb_user.SetNgayMuon(rs.getString("NgayMuon"));
             lb_user.SetNgayHenTra(rs.getDate("NgayHenTra"));
             lb_user.SetNgayTra(rs.getDate("NgayTra"));
             lb_user.SetGhiChu(rs.getString("GhiChu"));

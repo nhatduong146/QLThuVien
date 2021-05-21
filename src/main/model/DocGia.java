@@ -14,7 +14,7 @@ import java.util.Date;
 public class DocGia {
     private int stt;
     private String maDG;
-    private String hoten;
+    private String hoTen;
     private Date ngaySinh;
     private String diaChi;
     private Date ngayDK;
@@ -39,11 +39,11 @@ public class DocGia {
     }
 
     public String getHoten() {
-        return hoten;
+        return hoTen;
     }
 
     public void setHoten(String hoten) {
-        this.hoten = hoten;
+        this.hoTen = hoten;
     }
 
     public Date getNgaySinh() {

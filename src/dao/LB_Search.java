@@ -47,10 +47,10 @@ public class LB_Search {
                 } else {
                     lb_user.SetGioiTinh("Nữ");
                 }
-                lb_user.SetNgaySinh(rs.getDate("NgaySinh"));
+                lb_user.SetNgaySinh(rs.getString("NgaySinh"));
                 lb_user.SetDiaChi(rs.getString("DiaChi"));
-                lb_user.SetNgayDK(rs.getDate("NgayDangKi"));
-                lb_user.SetNgayHetHanDK(rs.getDate("NgayHetHanDK"));
+                lb_user.SetNgayDK(rs.getString("NgayDangKi"));
+                lb_user.SetNgayHetHanDK(rs.getString("NgayHetHanDK"));
                 lb_user.SetSDT(rs.getString("SoDienThoai"));
                 users.add(lb_user);
             }
@@ -79,10 +79,10 @@ public class LB_Search {
                 } else {
                     lb_user.SetGioiTinh("Nữ");
                 }
-                lb_user.SetNgaySinh(rs.getDate("NgaySinh"));
+                lb_user.SetNgaySinh(rs.getString("NgaySinh"));
                 lb_user.SetDiaChi(rs.getString("DiaChi"));
-                lb_user.SetNgayDK(rs.getDate("NgayDangKi"));
-                lb_user.SetNgayHetHanDK(rs.getDate("NgayHetHanDK"));
+                lb_user.SetNgayDK(rs.getString("NgayDangKi"));
+                lb_user.SetNgayHetHanDK(rs.getString("NgayHetHanDK"));
                 lb_user.SetSDT(rs.getString("SoDienThoai"));
                 users.add(lb_user);
             }
