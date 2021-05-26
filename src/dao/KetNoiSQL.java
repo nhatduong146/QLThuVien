@@ -14,10 +14,10 @@ import java.sql.DriverManager;
  */
 
 public class KetNoiSQL {
-    private static final String serverName = "DESKTOP-4GDE4UA";
+    private static final String serverName = "DAUCONG";
     private static final String databaseNAme = "MANAGE_LIBRARY";
-    private static final String userName = "sa";
-    private static final String password = "123456";
+    private static final String userName = "daucong";
+    private static final String password = "110901";
     
     public static Connection getConnection(){
         Connection connection = null;
