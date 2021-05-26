@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 
 public class KetNoiSQL {
     private static final String serverName = "DESKTOP-4GDE4UA";
-    private static final String databaseNAme = "MANAGE_LIBRARY";
+    private static final String databaseNAme = "Library";
     private static final String userName = "sa";
     private static final String password = "123456";
     

@@ -5,9 +5,6 @@
  */
 package views;
 
-import dao.LB_Service;
-import dao.LB_Search;
-import dao.LB_EditDaTa;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,11 +13,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import model.LB_User_DG;
-import model.LB_User_Muon;
-import model.LB_User_TSTL;
-import model.LB_User_DM;
-import model.LB_User_NXBTG;
 
 /**
  *
@@ -35,7 +27,6 @@ public class Giaodien extends javax.swing.JFrame {
     DefaultTableModel defaultTableModel5;
     DefaultTableModel defaultTableModel6;
     DefaultTableModel defaultTableModel7;
-    LB_Service userService;
 
     /**
      * Creates new form NewJFrame

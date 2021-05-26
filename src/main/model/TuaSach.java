@@ -10,54 +10,77 @@ package main.model;
  * @author Duong
  */
 public class TuaSach {
-    private int stt;
+
     private String maTS;
     private String tenTS;
     private String maTG;
     private String maTL;
     private String tomTat;
     private int soLuong;
-    
-    public int getStt(){
-        return stt;
+
+    public TuaSach() {
     }
-    public void setStt(int stt){
-        this.stt=stt;
+
+    public TuaSach(String maTS, String tenTS, String maTG, String maTL, String tomTat, int soLuong) {
+        this.maTS = maTS;
+        this.tenTS = tenTS;
+        this.maTG = maTG;
+        this.maTL = maTL;
+        this.tomTat = tomTat;
+        this.soLuong = soLuong;
     }
-    public String getMaTS(){
+
+    public String getMaTS() {
         return maTS;
     }
-    public void setMaTS( String maTS){
-        this.maTS = maTS; 
+
+    public void setMaTS(String maTS) {
+        this.maTS = maTS;
     }
-    public String getTenTS(){
+
+    public String getTenTS() {
         return tenTS;
     }
-    public void setTenTS(String tenTS){
-        this.tenTS=tenTS;
+
+    public void setTenTS(String tenTS) {
+        this.tenTS = tenTS;
     }
-    public int getSoLuong(){
+
+    public int getSoLuong() {
         return soLuong;
     }
-    public void setSoLuong(int soLuong){
-        this.soLuong=soLuong;
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
-    public String getMaTL(){
+
+    public String getMaTL() {
         return maTL;
     }
-    public void setMaTL(String maTL){
+
+    public void setMaTL(String maTL) {
         this.maTL = maTL;
     }
-     public String getMaTG(){
+
+    public String getMaTG() {
         return maTG;
     }
-    public void setMaTG(String maTG){
+
+    public void setMaTG(String maTG) {
         this.maTG = maTG;
     }
-     public String getTomTat(){
-         return tomTat;
-     }
-     public void setTomTat(String tomTat){
-         this.tomTat=tomTat;
-     }
+
+    public String getTomTat() {
+        return tomTat;
+    }
+
+    public void setTomTat(String tomTat) {
+        this.tomTat = tomTat;
+    }
+
+    @Override
+    public String toString() {
+        return "\nTuaSach{" + "maTS=" + maTS + ", tenTS=" + tenTS + ", maTG=" + maTG + ", maTL=" + maTL + ", tomTat=" + tomTat + ", soLuong=" + soLuong + '}';
+    }
+    
 }

@@ -30,8 +30,8 @@ public class DocGiaDao {
             rs = ps.executeQuery();
             
             while(rs.next()){
-                DocGia docGia = new DocGia();
-                // to be continue........................................................................................
+                list.add(new DocGia(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
+                                        rs.getString(6), rs.getString(7), rs.getString(8)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,12 +40,18 @@ public class DocGiaDao {
     }
     
     public void insert(DocGia docGia){
-        String sql = "INSERT INTO tblDocGia ";//to be continue....................................
+        String sql = "EXECUTE spInsert_tblDocGia ?, ?, ?, ?, ?, ?, ?";
         PreparedStatement ps = null;
-        
+        ResultSet rs = null;
         try {
             ps = con.prepareStatement(sql);
-            //to be continue ...................................................................................
+            ps.setString(1, docGia.getHoten());
+            ps.setString(2, docGia.getGioiTinh());
+            ps.setString(3, docGia.getNgaySinh());
+            ps.setString(4, docGia.getDiaChi());
+            ps.setString(5, docGia.getSdt());
+            ps.setString(6, docGia.getNgayDK());
+            ps.setString(7, docGia.getNgayHetHan());
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -53,11 +59,20 @@ public class DocGiaDao {
     }
     
     public void update(DocGia docGia){
-        String sql = "Update tblDocGia SET ........ WHERE maDocGia = ?";//to be continue....................................
+        String sql = "Update tblDocGia SET HoTenDG = ?, GioiTinh = ?, NgaySinh = ?, "
+                + "DiaChi = ?, SoDienThoai = ?, NgayDangKi = ?, NgayHetHanDk = ?"
+                + " WHERE maDocGia = ?";
         PreparedStatement ps = null;
-        
         try {
             ps = con.prepareStatement(sql);
+            ps.setString(1, docGia.getHoten());
+            ps.setString(2, docGia.getGioiTinh());
+            ps.setString(3, docGia.getNgaySinh());
+            ps.setString(4, docGia.getDiaChi());
+            ps.setString(5, docGia.getSdt());
+            ps.setString(6, docGia.getNgayDK());
+            ps.setString(7, docGia.getNgayHetHan());
+            ps.setString(8, docGia.getMaDG());
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -67,7 +82,6 @@ public class DocGiaDao {
     public void remove(String maDG){
         String sql = "DELETE FROM tblDocGia WHERE maDocGia = ?";
         PreparedStatement ps = null;
-        
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, maDG);
@@ -76,4 +90,30 @@ public class DocGiaDao {
         }
     }
     
+    public List<DocGia> findByName(String name){
+        List<DocGia> list = new ArrayList<>();
+        String sql = "SELECT * FROM tblDocGia WHERE HoTenDG LIKE CONCAT( '%',?,'%')";
+        System.out.println(name);
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                list.add(new DocGia(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
+                                        rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) {
+        DocGiaDao docGiaDao = new DocGiaDao();
+        System.out.println(docGiaDao.findByName("Cường"));
+    }
 }

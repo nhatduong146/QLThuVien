@@ -5,31 +5,36 @@
  */
 package main.model;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  *
  * @author Duong
  */
 public class DocGia {
-    private int stt;
     private String maDG;
     private String hoTen;
-    private Date ngaySinh;
+    private String ngaySinh;
     private String diaChi;
-    private Date ngayDK;
-    private Date ngayHetHan;
+    private String ngayDK;
+    private String ngayHetHan;
     private String sdt;
     private String gioiTinh;
 
-    public int getStt() {
-        return stt;
+    public DocGia() {
     }
-
-    public void setStt(int stt) {
-        this.stt = stt;
+    
+    public DocGia(String maDG, String hoTen, String ngaySinh, String diaChi, String ngayDK, String ngayHetHan, String sdt, String gioiTinh) {
+        this.maDG = maDG;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.ngayDK = ngayDK;
+        this.ngayHetHan = ngayHetHan;
+        this.sdt = sdt;
+        this.gioiTinh = gioiTinh;
     }
-
+    
     public String getMaDG() {
         return maDG;
     }
@@ -46,11 +51,11 @@ public class DocGia {
         this.hoTen = hoten;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -62,19 +67,19 @@ public class DocGia {
         this.diaChi = diaChi;
     }
 
-    public Date getNgayDK() {
+    public String getNgayDK() {
         return ngayDK;
     }
 
-    public void setNgayDK(Date ngayDK) {
+    public void setNgayDK(String ngayDK) {
         this.ngayDK = ngayDK;
     }
 
-    public Date getNgayHetHan() {
+    public String getNgayHetHan() {
         return ngayHetHan;
     }
 
-    public void setNgayHetHan(Date ngayHetHan) {
+    public void setNgayHetHan(String ngayHetHan) {
         this.ngayHetHan = ngayHetHan;
     }
 
@@ -93,6 +98,9 @@ public class DocGia {
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "\nDocGia{" + "maDG=" + maDG + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", diaChi=" + diaChi + ", ngayDK=" + ngayDK + ", ngayHetHan=" + ngayHetHan + ", sdt=" + sdt + ", gioiTinh=" + gioiTinh + '}';
+    }
 }

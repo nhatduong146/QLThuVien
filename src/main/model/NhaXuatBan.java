@@ -10,24 +10,16 @@ package main.model;
  * @author Duong
  */
 public class NhaXuatBan {
-    private int stt;
     private String maNXB;
     private String tenNXB;
 
-    public NhaXuatBan(int stt, String maNXB, String tenNXB) {
-        this.stt = stt;
+    public NhaXuatBan(String maNXB, String tenNXB) {
         this.maNXB = maNXB;
         this.tenNXB = tenNXB;
     }
     
     public NhaXuatBan(){}
-    
-    public int getStt(){
-        return stt;
-    }
-    public void setStt(int Stt){
-        this.stt = Stt;
-    }
+
     public String getMaNXB(){
         return maNXB;
     }
@@ -43,7 +35,7 @@ public class NhaXuatBan {
 
     @Override
     public String toString() {
-        return "NhaXuatBan{" + "stt=" + stt + ", maNXB=" + maNXB + ", tenNXB=" + tenNXB + '}';
+        return "NhaXuatBan{"+ ", maNXB=" + maNXB + ", tenNXB=" + tenNXB + '}';
     }
     
     
