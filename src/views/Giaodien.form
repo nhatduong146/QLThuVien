@@ -32,12 +32,11 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel9" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
+          <Component id="jPanel17" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane2" pref="0" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel17" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -56,7 +55,7 @@
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+          <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -78,10 +77,10 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#x110;&#x1ecd;c gi&#x1ea3;">
-                <Property name="tabTitle" type="java.lang.String" value="&#x110;&#x1ecd;c gi&#x1ea3;"/>
+              <JTabbedPaneConstraints tabName="&#x110;&#x1ecd;c gi&#x1ea3;     ">
+                <Property name="tabTitle" type="java.lang.String" value="&#x110;&#x1ecd;c gi&#x1ea3;     "/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/resources/reading.png"/>
+                  <Image iconType="3" name="/icon/resources/Person-Male-Light-icon-24.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -116,9 +115,10 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jPanel8" max="32767" attributes="0"/>
+                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel28" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel28" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -161,7 +161,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txtMaDocGia1" min="-2" pref="300" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="86" max="32767" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="txtSoDT1" min="-2" pref="200" max="-2" attributes="0"/>
@@ -169,12 +169,12 @@
                                   <Component id="txtDiaChi1" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jDateChooser3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtHoten1" alignment="0" pref="299" max="32767" attributes="0"/>
+                                          <Component id="jDateChooser3" alignment="0" pref="299" max="32767" attributes="0"/>
+                                          <Component id="txtHoten1" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtngayEndDK1" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtngayDK1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="228" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   </Group>
@@ -359,9 +359,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnXoa1" max="32767" attributes="0"/>
-                                  <Component id="btnCapnhat1" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnXoa1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCapnhat1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -373,7 +373,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btTracuu1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -382,14 +382,14 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnLuu1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnXoa1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLuu1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="btnXoa1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="btTracuu1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="btTracuu1" min="-2" pref="44" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnCapnhat1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCapnhat1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                                   <Component id="btnThem1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
@@ -407,10 +407,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/add-package.png"/>
+                          <Image iconType="3" name="/icon/resources/add-button (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Add"/>
                       </Properties>
@@ -427,10 +427,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/repeat.png"/>
+                          <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
@@ -447,10 +447,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/delete (1).png"/>
+                          <Image iconType="3" name="/icon/resources/delete (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Delete"/>
                       </Properties>
@@ -467,10 +467,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/file-download.png"/>
+                          <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Save"/>
                       </Properties>
@@ -490,7 +490,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/search-icon-32.png"/>
+                          <Image iconType="3" name="/icon/resources/seo (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u"/>
                       </Properties>
@@ -540,10 +540,10 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="M&#x1b0;&#x1ee3;n - tr&#x1ea3; s&#xe1;ch">
-                <Property name="tabTitle" type="java.lang.String" value="M&#x1b0;&#x1ee3;n - tr&#x1ea3; s&#xe1;ch"/>
+              <JTabbedPaneConstraints tabName="M&#x1b0;&#x1ee3;n - tr&#x1ea3; s&#xe1;ch    ">
+                <Property name="tabTitle" type="java.lang.String" value="M&#x1b0;&#x1ee3;n - tr&#x1ea3; s&#xe1;ch    "/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/resources/partner.png"/>
+                  <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -711,7 +711,7 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                      <Component id="btTracuu2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btTracuu2" min="-2" pref="42" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -723,7 +723,7 @@
                                   </Group>
                                   <Component id="txtNgayTra2" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="97" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -796,7 +796,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/search-icon-32.png"/>
+                          <Image iconType="3" name="/icon/resources/seo (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u"/>
                       </Properties>
@@ -861,13 +861,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnLuu2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnXoa2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLuu2" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="btnXoa2" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="99" max="32767" attributes="0"/>
+                              <EmptySpace pref="89" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnThem2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnCapnhat2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCapnhat2" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -892,10 +892,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/delete (1).png"/>
+                          <Image iconType="3" name="/icon/resources/delete (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Delete"/>
                       </Properties>
@@ -912,10 +912,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/repeat.png"/>
+                          <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
@@ -932,10 +932,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/add-package.png"/>
+                          <Image iconType="3" name="/icon/resources/add-button (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Add"/>
                       </Properties>
@@ -952,10 +952,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/file-download.png"/>
+                          <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Save"/>
                       </Properties>
@@ -1017,10 +1017,10 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Danh m&#x1ee5;c s&#xe1;ch">
-                <Property name="tabTitle" type="java.lang.String" value="Danh m&#x1ee5;c s&#xe1;ch"/>
+              <JTabbedPaneConstraints tabName="Danh m&#x1ee5;c s&#xe1;ch   ">
+                <Property name="tabTitle" type="java.lang.String" value="Danh m&#x1ee5;c s&#xe1;ch   "/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/resources/categories.png"/>
+                  <Image iconType="3" name="/icon/resources/menu.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -1194,7 +1194,7 @@
                                                   <Component id="txtNgonNgu3" min="-2" pref="137" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -1429,7 +1429,7 @@
                               <EmptySpace pref="79" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnThem3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnCapnhat3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCapnhat3" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
@@ -1453,10 +1453,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/delete (1).png"/>
+                          <Image iconType="3" name="/icon/resources/delete (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Delete"/>
                       </Properties>
@@ -1473,10 +1473,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/repeat.png"/>
+                          <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
@@ -1493,10 +1493,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/add-package.png"/>
+                          <Image iconType="3" name="/icon/resources/add-button (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Add"/>
                       </Properties>
@@ -1513,10 +1513,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/file-download.png"/>
+                          <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Save"/>
                       </Properties>
@@ -1538,7 +1538,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icon/resources/search-icon-32.png"/>
+                      <Image iconType="3" name="/icon/resources/seo (2).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u"/>
                   </Properties>
@@ -1603,10 +1603,10 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Tra c&#x1ee9;u theo NSX - t&#xe1;c gi&#x1ea3;">
-                <Property name="tabTitle" type="java.lang.String" value="Tra c&#x1ee9;u theo NSX - t&#xe1;c gi&#x1ea3;"/>
+              <JTabbedPaneConstraints tabName="Tra c&#x1ee9;u theo NSX - t&#xe1;c gi&#x1ea3;   ">
+                <Property name="tabTitle" type="java.lang.String" value="Tra c&#x1ee9;u theo NSX - t&#xe1;c gi&#x1ea3;   "/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/resources/search.png"/>
+                  <Image iconType="3" name="/icon/resources/research.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -1642,16 +1642,11 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jScrollPane5" min="-2" pref="493" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jPanel13" min="-2" pref="493" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jPanel13" min="-2" pref="493" max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" min="-2" pref="499" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel16" max="32767" attributes="0"/>
                               <Component id="jScrollPane11" max="32767" attributes="0"/>
@@ -1697,18 +1692,17 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel26" min="-2" pref="53" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel26" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <Component id="txtMaNXB4" min="-2" pref="152" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                                               <Component id="btTracuu4_1" min="-2" pref="129" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="txtTenNhaSX4" min="-2" pref="303" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="txtTenNhaSX4" min="-2" pref="303" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -1733,18 +1727,21 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="txtMaNXB4" min="-2" pref="31" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                              <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="btTracuu4_1" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btTracuu4_1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="txtMaNXB4" min="-2" pref="31" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -1752,7 +1749,7 @@
                                   <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtTenNhaSX4" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="46" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnLuu4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnXoa4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1762,7 +1759,7 @@
                                   <Component id="btnCapnhat4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnThem4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="49" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1780,7 +1777,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/search-icon-32.png"/>
+                          <Image iconType="3" name="/icon/resources/seo (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u"/>
                       </Properties>
@@ -1809,10 +1806,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/delete (1).png"/>
+                          <Image iconType="3" name="/icon/resources/delete (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Delete"/>
                       </Properties>
@@ -1829,10 +1826,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/repeat.png"/>
+                          <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
@@ -1849,10 +1846,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/add-package.png"/>
+                          <Image iconType="3" name="/icon/resources/add-button (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Add"/>
                       </Properties>
@@ -1869,10 +1866,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/file-download.png"/>
+                          <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Save"/>
                       </Properties>
@@ -1951,17 +1948,14 @@
                                   <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel35" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                      <Component id="txtTenTacgia4" min="-2" pref="365" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Component id="txtMaTacGia4" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtMaTacGia4" min="-2" pref="176" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                       <Component id="btTracuu4_2" min="-2" pref="129" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="txtTenTacgia4" min="-2" pref="365" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="69" max="32767" attributes="0"/>
                           </Group>
@@ -1984,12 +1978,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel33" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Component id="btTracuu4_2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtMaTacGia4" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel33" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="btTracuu4_2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtMaTacGia4" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -2024,7 +2016,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/search-icon-32.png"/>
+                          <Image iconType="3" name="/icon/resources/seo (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u"/>
                       </Properties>
@@ -2053,10 +2045,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/delete (1).png"/>
+                          <Image iconType="3" name="/icon/resources/delete (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Delete"/>
                       </Properties>
@@ -2073,10 +2065,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/repeat.png"/>
+                          <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Refresh"/>
                       </Properties>
@@ -2093,10 +2085,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/add-package.png"/>
+                          <Image iconType="3" name="/icon/resources/add-button (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Add"/>
                       </Properties>
@@ -2113,10 +2105,10 @@
                           <Font name="Tahoma" size="14" style="1"/>
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/icon/resources/file-download.png"/>
+                          <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Save"/>
                       </Properties>
@@ -2186,10 +2178,10 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Tra c&#x1ee9;u theo th&#x1ec3; lo&#x1ea1;i - t&#x1ef1;a s&#xe1;ch">
-                <Property name="tabTitle" type="java.lang.String" value="Tra c&#x1ee9;u theo th&#x1ec3; lo&#x1ea1;i - t&#x1ef1;a s&#xe1;ch"/>
+              <JTabbedPaneConstraints tabName="Tra c&#x1ee9;u theo th&#x1ec3; lo&#x1ea1;i - t&#x1ef1;a s&#xe1;ch   ">
+                <Property name="tabTitle" type="java.lang.String" value="Tra c&#x1ee9;u theo th&#x1ec3; lo&#x1ea1;i - t&#x1ef1;a s&#xe1;ch   "/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/resources/investigation.png"/>
+                  <Image iconType="3" name="/icon/resources/search (1).png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -2308,16 +2300,14 @@
                                               <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="txtSoLuong5" max="32767" attributes="0"/>
-                                                  <Component id="jScrollPane7" alignment="0" pref="240" max="32767" attributes="0"/>
-                                                  <Component id="cbbMaTheLoai5" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="cbbMaTacGia5" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="txtTentuaSach5" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Component id="txtMaTuaSach5" min="-2" pref="254" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtSoLuong5" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane7" alignment="0" pref="240" max="32767" attributes="0"/>
+                                              <Component id="cbbMaTheLoai5" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cbbMaTacGia5" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtTentuaSach5" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtMaTuaSach5" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jLabel36" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -2343,14 +2333,13 @@
                                       <Component id="btTracuu5_1" min="-2" pref="41" max="-2" attributes="0"/>
                                       <Component id="jLabel29" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtTentuaSach5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="btnXoa6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtTentuaSach5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2368,7 +2357,9 @@
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                          <Component id="btnXoa6" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="btnLuu6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       </Group>
@@ -2386,7 +2377,7 @@
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                                   <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" pref="40" max="32767" attributes="0"/>
+                                                  <EmptySpace type="separate" pref="43" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jScrollPane7" pref="0" max="32767" attributes="0"/>
@@ -2452,7 +2443,7 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/search-icon-32.png"/>
+                              <Image iconType="3" name="/icon/resources/seo (2).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u"/>
                           </Properties>
@@ -2502,10 +2493,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/delete (1).png"/>
+                              <Image iconType="3" name="/icon/resources/delete (2).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete"/>
                           </Properties>
@@ -2522,10 +2513,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/repeat.png"/>
+                              <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Refresh"/>
                           </Properties>
@@ -2542,10 +2533,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/add-package.png"/>
+                              <Image iconType="3" name="/icon/resources/add-button (1).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Add"/>
                           </Properties>
@@ -2562,10 +2553,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/file-download.png"/>
+                              <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Save"/>
                           </Properties>
@@ -2681,7 +2672,7 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/search-icon-32.png"/>
+                              <Image iconType="3" name="/icon/resources/seo (2).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u"/>
                           </Properties>
@@ -2710,10 +2701,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/delete (1).png"/>
+                              <Image iconType="3" name="/icon/resources/delete (2).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Delete"/>
                           </Properties>
@@ -2730,10 +2721,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/repeat.png"/>
+                              <Image iconType="3" name="/icon/resources/refresh (2).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Refresh"/>
                           </Properties>
@@ -2750,10 +2741,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/add-package.png"/>
+                              <Image iconType="3" name="/icon/resources/add-button (1).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Add"/>
                           </Properties>
@@ -2770,10 +2761,10 @@
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="cc" type="rgb"/>
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/icon/resources/file-download.png"/>
+                              <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Save"/>
                           </Properties>
@@ -2859,10 +2850,10 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Th&#x1ed1;ng k&#xea;">
-                <Property name="tabTitle" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
+              <JTabbedPaneConstraints tabName="Th&#x1ed1;ng k&#xea;   ">
+                <Property name="tabTitle" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;   "/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icon/resources/analytics.png"/>
+                  <Image iconType="3" name="/icon/resources/stats.png"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -2871,14 +2862,15 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel18" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton20" min="-2" pref="144" max="-2" attributes="0"/>
-                          <Component id="jScrollPane9" min="-2" pref="1100" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButton20" min="-2" pref="144" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane9" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel18" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -3042,6 +3034,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThongke8ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel19">
                   <Properties>
@@ -3153,7 +3148,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="245" max="32767" attributes="0"/>
+                  <EmptySpace pref="220" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
               </Group>

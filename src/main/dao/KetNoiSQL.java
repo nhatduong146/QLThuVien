@@ -14,17 +14,17 @@ import java.sql.DriverManager;
  */
 
 public class KetNoiSQL {
-    private static final String serverName = "DESKTOP-7H6RADQ\\TRANTHITHULUYEN";
+    private static final String serverName = "DAUCONG";
     private static final String databaseNAme = "Library";
-    private static final String userName = "sa";
-    private static final String password = "tttl1209ntk";
+    private static final String userName = "daucong";
+    private static final String password = "110901";
     
     public static Connection getConnection(){
         Connection connection = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databasename=Library;"
-                    + "username=sa;password=tttl1209ntk0208");
+                    + "username=daucong;password=110901");
         } catch (Exception e) {
             e.printStackTrace();
         }
