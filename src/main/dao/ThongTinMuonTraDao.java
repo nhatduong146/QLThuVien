@@ -90,27 +90,27 @@ public class ThongTinMuonTraDao {
         }
     }
     
-//    public List<ThongTinMuonTra> findByName(String name){
-//        List<ThongTinMuonTra> list = new ArrayList<>();
-//        String sql = "SELECT * FROM tblMuon WHERE HoTenDG LIKE CONCAT( '%',?,'%')";
-//        System.out.println(name);
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//        
-//        try {
-//            ps = con.prepareStatement(sql);
-//            ps.setString(1, name);
-//            rs = ps.executeQuery();
-//            
-//            while(rs.next()){
-//                list.add(new ThongTinMuonTra(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), 
-//                                        rs.getString(6), rs.getString(7), rs.getString(8)));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
+    public List<ThongTinMuonTra> findByName(String maDG){
+        List<ThongTinMuonTra> list = new ArrayList<>();
+        String sql = "SELECT * FROM tblMuon WHERE MaDocGia = ?";
+        System.out.println(maDG);
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql); 
+            ps.setString(1, maDG);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                list.add(new ThongTinMuonTra(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), 
+                                        rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     
     public static void main(String[] args) {
         ThongTinMuonTraDao thongTinMuonTraDao = new ThongTinMuonTraDao();

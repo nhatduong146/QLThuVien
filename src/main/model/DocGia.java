@@ -24,7 +24,7 @@ public class DocGia {
     public DocGia() {
     }
     
-    public DocGia(String maDG, String hoTen, String ngaySinh, String diaChi, String ngayDK, String ngayHetHan, String sdt, String gioiTinh) {
+    public DocGia(String maDG, String hoTen, String gioiTinh, String ngaySinh, String diaChi, String sdt, String ngayDK, String ngayHetHan) {
         this.maDG = maDG;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;

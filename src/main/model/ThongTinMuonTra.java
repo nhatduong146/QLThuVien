@@ -20,7 +20,7 @@ public class ThongTinMuonTra {
     private String ngayMuon;
     private String ghiChu;
 
-    public ThongTinMuonTra(String maMuon, String maDG, String maDS, int soLuong, String ngayTra, String ngayHenTra, String ngayMuon, String ghiChu) {
+    public ThongTinMuonTra(String maMuon, String maDG, String maDS, int soLuong, String ngayMuon, String ngayHenTra, String ngayTra, String ghiChu) {
         this.maMuon = maMuon;
         this.maDG = maDG;
         this.maDS = maDS;
