@@ -112,8 +112,26 @@ public class ThongTinMuonTraDao {
         return list;
     }
     
+    public int getQuantityByMonth(String month){
+        String sql = "SELECT SUM(SoLuong) FROM tblMuon\n" +
+                        " WHERE SUBSTRING(NgayMuon, 1, 3) LIKE ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, month);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+                return  rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
     public static void main(String[] args) {
         ThongTinMuonTraDao thongTinMuonTraDao = new ThongTinMuonTraDao();
-        thongTinMuonTraDao.remove("MM0023");
+        System.out.println(thongTinMuonTraDao.getQuantityByMonth("Jan"));
     }
 }

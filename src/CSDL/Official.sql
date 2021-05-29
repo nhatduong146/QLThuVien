@@ -1,4 +1,4 @@
-﻿CREATE DATABASE [Library]
+CREATE DATABASE [Library]
 GO
 USE [Library]
 GO
@@ -168,27 +168,28 @@ INSERT [dbo].[tblDauSach] ([MaDauSach], [MaTuaSach], [NgonNgu], [MaNXB]) VALUES 
 INSERT [dbo].[tblDauSach] ([MaDauSach], [MaTuaSach], [NgonNgu], [MaNXB]) VALUES (N'DS0015', N'TS0004', N'Tiếng Việt', N'NXB005')
 GO
 
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0001', N'DG0001', N'DS0001', 1, N'April 15, 2001', N'August 20, 2001', N'August 20, 2001', N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0002', N'DG0002', N'DS0001', 2, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0003', N'DG0003', N'DS0010', 3, N'April 15, 2001', N'August 20, 2001', N'August 20, 2001', N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0004', N'DG0004', N'DS0011', 4, N'April 15, 2001', N'August 20, 2001', N'August 20, 2001', N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0005', N'DG0005', N'DS0009', 5, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0006', N'DG0006', N'DS0005', 1, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0007', N'DG0006', N'DS0001', 2, N'April 15, 2001', N'August 20, 2001', N'August 20, 2001', N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0008', N'DG0007', N'DS0007', 3, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0009', N'DG0009', N'DS0001', 4, N'April 15, 2001', N'August 20, 2001', N'August 20, 2001', N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0010', N'DG0008', N'DS0006', 5, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0011', N'DG0010', N'DS0001', 1, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0012', N'DG0020', N'DS0004', 2, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0013', N'DG0015', N'DS0001', 3, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0014', N'DG0018', N'DS0003', 4, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0015', N'DG0012', N'DS0002', 5, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0016', N'DG0019', N'DS0005', 1, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0017', N'DG0016', N'DS0004', 2, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0018', N'DG0014', N'DS0003', 3, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0019', N'DG0017', N'DS0001', 4, N'April 15, 2001', N'August 20, 2001', NULL, N'')
-INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0020', N'DG0013', N'DS0002', 5, N'April 15, 2001', N'August 20, 2001', NULL, N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0001', N'DG0001', N'DS0001', 1, N'Jan 6, 2020', N'Feb 6, 2020', N'Feb 4, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0002', N'DG0002', N'DS0001', 2, N'Mar 12, 2020', N'May 12, 2020', N'May 10, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0003', N'DG0003', N'DS0010', 3, N'Feb 14, 2020', N'Apr 14, 2020', N'Apr 5, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0004', N'DG0004', N'DS0011', 4, N'April 15, 2020', N'Jun 15, 2020', N'Jun 10, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0005', N'DG0005', N'DS0009', 5, N'Jul 31, 2020', N'Aug 31, 2020', N'Aug 30, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0006', N'DG0006', N'DS0005', 1, N'Oct 1, 2020', N'Dec 1, 2020', N'Dec 1, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0007', N'DG0006', N'DS0001', 2, N'Jun 11, 2020', N'Aug 11, 2020', N'Aug 5, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0008', N'DG0007', N'DS0007', 3, N'Sep 18, 2020', N'Nov 18, 2020', N'Nov 15, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0009', N'DG0009', N'DS0001', 4, N'Aug 12, 2020', N'Oct 12, 2020', N'Oct 10, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0010', N'DG0008', N'DS0006', 5, N'Jul 7, 2020', N'Sep 7, 2020', N'Sep 7, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0011', N'DG0010', N'DS0001', 1, N'Nov 2, 2020', N'Dec 31, 2020', N'Dec 30, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0012', N'DG0020', N'DS0004', 2, N'Sep 11, 2020', N'Nov 11, 2020', N'Nov 10, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0013', N'DG0015', N'DS0001', 3, N'Jun 9, 2020', N'Aug 9, 2020', N'Aug 9, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0014', N'DG0018', N'DS0003', 4, N'Jan 8, 2020', N'Mar 8, 2020', N'Mar 7, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0015', N'DG0012', N'DS0002', 5, N'Feb 21, 2020', N'Mar 21, 2020', N'Mar 18, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0016', N'DG0019', N'DS0005', 1, N'Dec 1, 2019', N'Feb 1, 2020', N'Feb 1, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0017', N'DG0016', N'DS0004', 2, N'Dec 15, 2019', N'Jan 31, 2020', N'Jan 30, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0018', N'DG0014', N'DS0003', 3, N'Apr 5, 2020', N'Jun 5, 2020', N'Jun 5, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0019', N'DG0017', N'DS0001', 4, N'Jul 15, 2020', N'Sep 9, 2020', N'Sep 9, 2020', N'')
+INSERT [dbo].[tblMuon] ([MaMuon], [MaDocGia], [MaDauSach], [SoLuong], [NgayMuon], [NgayHenTra], [NgayTra], [GhiChu]) VALUES (N'MM0020', N'DG0013', N'DS0002', 5, N'Nov 25, 2020', N'Dec 31, 2020', N'Dec 30, 2020', N'')
 GO
+
 
 
 --Store procedure insert id automatically
