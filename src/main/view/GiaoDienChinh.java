@@ -1,16 +1,13 @@
-package main.Views;
+package main.view;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
-import main.Views.DocGiaPanel;
+import main.view.DocGiaPanel;
 
 /**
  *
@@ -32,7 +29,7 @@ public class GiaoDienChinh extends javax.swing.JFrame {
         jPanel1.add(new DocGiaPanel());
         jPanel2.add(new ThongTinMuonSachPanel());
         jPanel3.add(new DauSachPanel());
-        jPanel4.add(new NhaSanXuatVaTacGiaPanel());
+        jPanel4.add(new NhaSanXuatVaTacGiaPanel());               
         jPanel5.add(new TheLoaiVaTuaSachPanel());
         jPanel6.add(new ThongKePanel());
     }
@@ -217,9 +214,9 @@ public class GiaoDienChinh extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int confident = JOptionPane.showConfirmDialog(GiaoDienChinh.this, "Bạn có chắc muốn đóng ứng dụng không");
-            if (confident == JOptionPane.YES_OPTION) {
-                this.dispose();
-            }
+        if (confident == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

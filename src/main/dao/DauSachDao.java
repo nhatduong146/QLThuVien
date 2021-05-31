@@ -82,6 +82,26 @@ public class DauSachDao {
         } catch (Exception e) {
         }
     }
+    public List<DauSach> findByName(String mads){
+        List<DauSach> list = new ArrayList<>();
+        String sql = "SELECT * FROM tblDauSach WHERE MaTuaSach= ?";
+        System.out.println(mads);
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, mads);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                 list.add(new DauSach(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     // khong co ten dau sach nen khong co phuong thuc findByName()
 

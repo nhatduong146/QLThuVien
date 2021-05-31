@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.Views;
+package main.view;
+
 import java.awt.BorderLayout;
 import static java.lang.String.format;
 import static java.lang.String.format;
@@ -33,20 +34,14 @@ import main.model.TuaSach;
 import main.model.DauSach;
 import main.model.NhaXuatBan;
 import main.model.ThongTinMuonTra;
+
 /**
  *
  * @author Admin
  */
 public class DauSachPanel extends javax.swing.JPanel {
-    DefaultTableModel defaultTableModel1;
-    DefaultTableModel defaultTableModel2;
-    DefaultTableModel defaultTableModel3;
-    DefaultTableModel defaultTableModel4;
-    DefaultTableModel defaultTableModel5;
-    DefaultTableModel defaultTableModel6;
-    DefaultTableModel defaultTableModel7;
-    DefaultTableModel defaultTableModel8;
-    DefaultTableModel defaultTableModel9;
+
+    DefaultTableModel modelDauSach;
     DocGiaDao userDG;
     DauSachDao userDS;
     ThongTinMuonTraDao userTTMT;
@@ -54,12 +49,38 @@ public class DauSachPanel extends javax.swing.JPanel {
     TacGiaDao userTG;
     TheLoaiDao userTL;
     TuaSachDao userTS;
-  SimpleDateFormat f= new SimpleDateFormat("MMMM dd, yyyy"); 
+    SimpleDateFormat f = new SimpleDateFormat("MMMM dd, yyyy");
+
     /**
      * Creates new form DM_sachJPanel
      */
     public DauSachPanel() {
         initComponents();
+        modelDauSach = new DefaultTableModel();
+        userDS = new DauSachDao();
+        userNXB = new NhaXuatBanDao();
+        userTS = new TuaSachDao();
+        userTG = new TacGiaDao();
+        userTL = new TheLoaiDao();
+        tblDauSach.setModel(modelDauSach);
+        modelDauSach.addColumn("STT");
+        modelDauSach.addColumn("Mã đầu sách");
+        modelDauSach.addColumn("Mã tựa sách");
+        modelDauSach.addColumn("Ngôn ngữ");
+        modelDauSach.addColumn("Mã nhà xuất bản");
+        tblDauSach.setRowHeight(40);
+        ShowDauSach();
+    }
+
+    public void ShowDauSach() {
+        List<DauSach> dausach = userDS.getAll();
+        int stt = 0;
+        modelDauSach.setRowCount(0);
+        for (DauSach show : dausach) {
+            stt++;
+            modelDauSach.addRow(new Object[]{stt, show.getMaDS(), show.getMaTS(), show.getNgonNgu(), show.getMaNXB()});
+
+        }
     }
 
     /**
@@ -73,7 +94,7 @@ public class DauSachPanel extends javax.swing.JPanel {
 
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tbldanhmucSach3 = new javax.swing.JTable();
+        tblDauSach = new javax.swing.JTable();
         jButton16 = new javax.swing.JButton();
         jPanel26 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -106,7 +127,7 @@ public class DauSachPanel extends javax.swing.JPanel {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        tbldanhmucSach3.setModel(new javax.swing.table.DefaultTableModel(
+        tblDauSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -114,7 +135,12 @@ public class DauSachPanel extends javax.swing.JPanel {
                 "STT", "TenSach", "MaDauSach", "LoaiSach", "Soluong"
             }
         ));
-        jScrollPane4.setViewportView(tbldanhmucSach3);
+        tblDauSach.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDauSachMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblDauSach);
 
         jButton16.setBackground(java.awt.SystemColor.activeCaption);
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/resources/thoat.png"))); // NOI18N
@@ -210,6 +236,11 @@ public class DauSachPanel extends javax.swing.JPanel {
         btTracuu3.setForeground(new java.awt.Color(255, 255, 255));
         btTracuu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/resources/seo (2).png"))); // NOI18N
         btTracuu3.setText("Tra cứu");
+        btTracuu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTracuu3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
@@ -223,21 +254,19 @@ public class DauSachPanel extends javax.swing.JPanel {
                 .addContainerGap(71, Short.MAX_VALUE)
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCapnhat3)
-                            .addComponent(btnXoa3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel27Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(btnThem3)
-                                .addGap(36, 36, 36))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnLuu3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22))))
+                                .addComponent(btnXoa3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLuu3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel27Layout.createSequentialGroup()
+                                .addComponent(btnCapnhat3)
+                                .addGap(41, 41, 41)
+                                .addComponent(btnThem3)))
+                        .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
                         .addComponent(btTracuu3)
-                        .addGap(107, 107, 107))))
+                        .addGap(93, 93, 93))))
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,16 +450,25 @@ public class DauSachPanel extends javax.swing.JPanel {
 
     private void btnXoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa3ActionPerformed
         // TODO add your handling code here:
-        int row = tbldanhmucSach3.getSelectedRow();
-        if (row == -1){
-            JOptionPane.showMessageDialog(this,"Vui lòng chọn Danh mục muốn xóa","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }else
-        {
+        int row = tblDauSach.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Danh mục muốn xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
             int confident = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa Danh mục này hay không!");
             if (confident == JOptionPane.YES_OPTION) {
-                String maDS = String.valueOf(tbldanhmucSach3.getValueAt(row, 1));
+                String maDS = String.valueOf(tblDauSach.getValueAt(row, 1));
                 userDS.remove(maDS);
-                defaultTableModel3.removeRow(row);
+                JOptionPane.showConfirmDialog(this, "Xóa danh mục thành công");
+                txtMaDauSach3.setText("");
+                txtTenSach3.setText("");
+                txttheloai3.setText("");
+                txtTacGia3.setText("");
+                RdbtnChuamuon4.setSelected(false);
+                RdbtnDamuon4.setSelected(false);
+                txtNDtomluoc3.setText("");
+                txtNgonNgu3.setText("");
+                txtTenNXB3.setText("");
+                ShowDauSach();
 
             }
 
@@ -448,13 +486,7 @@ public class DauSachPanel extends javax.swing.JPanel {
         txtNDtomluoc3.setText("");
         txtNgonNgu3.setText("");
         txtTenNXB3.setText("");
-        defaultTableModel3.setRowCount(0);
-        List<DauSach> user_DS = userDS.getAll();
-        int sttds=0;
-        for(DauSach users : user_DS){
-            sttds++;
-            defaultTableModel3.addRow(new Object[]{sttds,users.getMaDS(),users.getMaTS(),users.getNgonNgu(),users.getMaNXB()});
-        }
+        ShowDauSach();
     }//GEN-LAST:event_btnCapnhat3ActionPerformed
 
     private void btnThem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem3ActionPerformed
@@ -462,44 +494,49 @@ public class DauSachPanel extends javax.swing.JPanel {
 
         DauSach dauSach = new DauSach();
         List<TuaSach> user_TS = userTS.getAll();
-        int dem1=0;
-        int dem2=0;
-        for(TuaSach users : user_TS){
+        int dem1 = 0;
+        int dem2 = 0;
+        for (TuaSach users : user_TS) {
             dem1++;
-            if (users.getTenTS().equals(txtTenSach3.getText())){
+            if (users.getTenTS().equals(txtTenSach3.getText())) {
                 dauSach.setMaTS(users.getMaTS());
                 break;
-            }
-            else{
+            } else {
                 dem2++;
             }
         }
-        if(dem1==dem2){
-            JOptionPane.showMessageDialog(this,"Không có tên sách bạn đã nhập!\n Vui lòng kiểm tra lại","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }
-        else
-        {
+        if (dem1 == dem2) {
+            JOptionPane.showMessageDialog(this, "Không có tên sách bạn đã nhập!\n Vui lòng kiểm tra lại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
             dauSach.setNgonNgu(txtNgonNgu3.getText());
             List<NhaXuatBan> user_NXB = userNXB.getAll();
-            int dem3=0;
-            int dem4=0;
-            for(NhaXuatBan users : user_NXB){
+            int dem3 = 0;
+            int dem4 = 0;
+            for (NhaXuatBan users : user_NXB) {
                 dem3++;
-                if (users.getTenNXB().equals(txtTenNXB3.getText())){
+                if (users.getTenNXB().equals(txtTenNXB3.getText())) {
                     dauSach.setMaNXB(users.getMaNXB());
+                } else {
+                    dem4++;
                 }
-                else
-                dem4++;
             }
-            if (dem3==dem4){
-                JOptionPane.showMessageDialog(this,"Không có tên Nhà xuất bản bạn đã nhập!\n Vui lòng kiểm tra lại","Thông báo", JOptionPane.ERROR_MESSAGE );
-            }
-            else
-            {
-                List<DauSach> list = new ArrayList<DauSach>();
-                list.add(dauSach);
+            if (dem3 == dem4) {
+                JOptionPane.showMessageDialog(this, "Không có tên Nhà xuất bản bạn đã nhập!\n Vui lòng kiểm tra lại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else {
+
                 userDS.insert(dauSach);
 
+                JOptionPane.showConfirmDialog(this, "Thêm danh mục thành công");
+                txtMaDauSach3.setText("");
+                txtTenSach3.setText("");
+                txttheloai3.setText("");
+                txtTacGia3.setText("");
+                RdbtnChuamuon4.setSelected(false);
+                RdbtnDamuon4.setSelected(false);
+                txtNDtomluoc3.setText("");
+                txtNgonNgu3.setText("");
+                txtTenNXB3.setText("");
+                ShowDauSach();
             }
         }
     }//GEN-LAST:event_btnThem3ActionPerformed
@@ -507,49 +544,122 @@ public class DauSachPanel extends javax.swing.JPanel {
     private void btnLuu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu3ActionPerformed
         // TODO add your handling code here:
         DauSach dauSach = new DauSach();
+        dauSach.setMaDS(txtMaDauSach3.getText());
         dauSach.setMaTS(txtMaDauSach3.getText());
         List<TuaSach> user_TS = userTS.getAll();
-        int dem1=0;
-        int dem2=0;
-        for(TuaSach users : user_TS){
+        int dem1 = 0;
+        int dem2 = 0;
+        for (TuaSach users : user_TS) {
             dem1++;
-            if (users.getTenTS().equals(txtTenSach3.getText())){
+            if (users.getTenTS().equals(txtTenSach3.getText())) {
                 dauSach.setMaTS(users.getMaTS());
                 break;
-            }
-            else{
+            } else {
                 dem2++;
             }
         }
-        if(dem1==dem2){
-            JOptionPane.showMessageDialog(this,"Không có tên sách bạn đã nhập!\n Vui lòng kiểm tra lại","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }
-        else
-        {
+        if (dem1 == dem2) {
+            JOptionPane.showMessageDialog(this, "Không có tên sách bạn đã nhập!\n Vui lòng kiểm tra lại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
             dauSach.setNgonNgu(txtNgonNgu3.getText());
             List<NhaXuatBan> user_NXB = userNXB.getAll();
-            int dem3=0;
-            int dem4=0;
-            for(NhaXuatBan users : user_NXB){
+            int dem3 = 0;
+            int dem4 = 0;
+            for (NhaXuatBan users : user_NXB) {
                 dem3++;
-                if (users.getTenNXB().equals(txtTenNXB3.getText())){
+                if (users.getTenNXB().equals(txtTenNXB3.getText())) {
                     dauSach.setMaNXB(users.getMaNXB());
+                } else {
+                    dem4++;
                 }
-                else
-                dem4++;
             }
-            if (dem3==dem4){
-                JOptionPane.showMessageDialog(this,"Không có tên Nhà xuất bản bạn đã nhập!\n Vui lòng kiểm tra lại","Thông báo", JOptionPane.ERROR_MESSAGE );
-            }
-            else
-            {
-                List<DauSach> list = new ArrayList<DauSach>();
-                list.add(dauSach);
-                userDS.update(dauSach);
+            if (dem3 == dem4) {
+                JOptionPane.showMessageDialog(this, "Không có tên Nhà xuất bản bạn đã nhập!\n Vui lòng kiểm tra lại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else {
 
+                userDS.update(dauSach);
+                JOptionPane.showConfirmDialog(this, "Cập nhật danh mục thành công");
+                txtMaDauSach3.setText("");
+                txtTenSach3.setText("");
+                txttheloai3.setText("");
+                txtTacGia3.setText("");
+                RdbtnChuamuon4.setSelected(false);
+                RdbtnDamuon4.setSelected(false);
+                txtNDtomluoc3.setText("");
+                txtNgonNgu3.setText("");
+                txtTenNXB3.setText("");
+                ShowDauSach();
             }
         }
     }//GEN-LAST:event_btnLuu3ActionPerformed
+
+    private void btTracuu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu3ActionPerformed
+        // TODO add your handling code here:
+            String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Tựa sách",JOptionPane.INFORMATION_MESSAGE);
+
+        List<TuaSach> tuasach = userTS.findByName(str);
+        for(TuaSach user : tuasach){
+            List<DauSach> dausach = userDS.findByName(user.getMaTS());
+            int stt=0;
+            modelDauSach.setRowCount(0);
+            for(DauSach show : dausach){
+                txtTenSach3.setText(show.getMaDS());
+                stt++;
+                modelDauSach.addRow(new Object[]{stt, show.getMaDS(), show.getMaTS(), show.getNgonNgu(), show.getMaNXB()});
+
+            }
+            if (modelDauSach.getRowCount()==0){
+                JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
+                ShowDauSach();
+            }
+        }
+    }//GEN-LAST:event_btTracuu3ActionPerformed
+
+    private void tblDauSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDauSachMouseClicked
+        // TODO add your handling code here:
+        int row = tblDauSach.getSelectedRow();
+        txtMaDauSach3.setText(String.valueOf(tblDauSach.getValueAt(row, 1)));
+        String string = String.valueOf(tblDauSach.getValueAt(row, 1));
+
+        List<DauSach> user_DS2 = userDS.getAll();
+        for (DauSach users_DS : user_DS2) {
+            if (string.equals(users_DS.getMaDS())) {
+                List<TuaSach> user_TS2 = userTS.getAll();
+                for (TuaSach users_TS : user_TS2) {
+                    if (users_DS.getMaTS().equals(users_TS.getMaTS())) {
+                        txtTenSach3.setText(users_TS.getTenTS());
+                        List<TheLoai> user_TL2 = userTL.getAll();
+                        for (TheLoai userss : user_TL2) {
+                            if (users_TS.getMaTL().equals(userss.getMaTL())) {
+                                txttheloai3.setText(userss.getTenTL());
+                            }
+                        }
+                        List<TacGia> user_TG2 = userTG.getAll();
+                        for (TacGia users_TG : user_TG2) {
+                            if (users_TS.getMaTG().equals(users_TG.getMaTG())) {
+                                txtTacGia3.setText(users_TG.getHoten());
+                            }
+                        }
+                        if (users_TS.getSoLuong() > 0) {
+                            RdbtnChuamuon4.setSelected(true);
+                        } else {
+                            RdbtnDamuon4.setSelected(true);
+                        }
+                        txtNDtomluoc3.setText(users_TS.getTomTat());
+                    }
+
+                }
+            }
+
+        }
+        txtNgonNgu3.setText(String.valueOf(tblDauSach.getValueAt(row, 3)));
+        List<NhaXuatBan> user_NXB = userNXB.getAll();
+        for (NhaXuatBan users : user_NXB) {
+            if (users.getMaNXB().equals(String.valueOf(tblDauSach.getValueAt(row, 4)))) {
+                txtTenNXB3.setText(users.getTenNXB());
+            }
+        }
+    }//GEN-LAST:event_tblDauSachMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -575,7 +685,7 @@ public class DauSachPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable tbldanhmucSach3;
+    private javax.swing.JTable tblDauSach;
     private javax.swing.JLabel txtMaDauSach3;
     private javax.swing.JTextArea txtNDtomluoc3;
     private javax.swing.JTextField txtNgonNgu3;

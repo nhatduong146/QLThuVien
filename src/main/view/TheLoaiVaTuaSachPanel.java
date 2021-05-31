@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.Views;
+package main.view;
+
 import java.awt.BorderLayout;
 import static java.lang.String.format;
 import static java.lang.String.format;
@@ -33,20 +34,16 @@ import main.model.TuaSach;
 import main.model.DauSach;
 import main.model.NhaXuatBan;
 import main.model.ThongTinMuonTra;
+
 /**
  *
  * @author Admin
  */
 public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
-    DefaultTableModel defaultTableModel1;
-    DefaultTableModel defaultTableModel2;
-    DefaultTableModel defaultTableModel3;
-    DefaultTableModel defaultTableModel4;
-    DefaultTableModel defaultTableModel5;
-    DefaultTableModel defaultTableModel6;
-    DefaultTableModel defaultTableModel7;
-    DefaultTableModel defaultTableModel8;
-    DefaultTableModel defaultTableModel9;
+
+    DefaultTableModel modelTuaSach;
+    DefaultTableModel modelTheLoai;
+
     DocGiaDao userDG;
     DauSachDao userDS;
     ThongTinMuonTraDao userTTMT;
@@ -54,12 +51,62 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
     TacGiaDao userTG;
     TheLoaiDao userTL;
     TuaSachDao userTS;
-  SimpleDateFormat f= new SimpleDateFormat("MMMM dd, yyyy"); 
+    SimpleDateFormat f = new SimpleDateFormat("MMMM dd, yyyy");
+
     /**
      * Creates new form TheLoai_tuaSachJPanel
      */
     public TheLoaiVaTuaSachPanel() {
         initComponents();
+        modelTuaSach = new DefaultTableModel();
+        modelTheLoai = new DefaultTableModel();
+        userTS = new TuaSachDao();
+        userTL = new TheLoaiDao();
+        userTG = new TacGiaDao();
+        tblTheLoai5.setModel(modelTheLoai);
+        modelTheLoai.addColumn("STT");
+        modelTheLoai.addColumn("Mã thể loại");
+        modelTheLoai.addColumn("Tên thể loại");
+        ShowTheLoai();
+        tblTuaSach5.setModel(modelTuaSach);
+        modelTuaSach.addColumn("STT");
+        modelTuaSach.addColumn("Mã tựa sách");
+        modelTuaSach.addColumn("Tên tựa sách");
+        modelTuaSach.addColumn("Mã tác giả");
+        modelTuaSach.addColumn("Mã thể loại");
+        modelTuaSach.addColumn("Tóm tắt");
+        modelTuaSach.addColumn("Số lượng");
+        tblTheLoai5.setRowHeight(40);
+        tblTuaSach5.setRowHeight(40);
+        ShowTuaSach();
+        List<TacGia> tacgia = userTG.getAll();
+        for (TacGia show : tacgia) {
+            cbbMaTacGia5.addItem(show.getMaTG());
+        }
+        List<TheLoai> theloai = userTL.getAll();
+        for (TheLoai show : theloai) {
+            cbbMaTheLoai5.addItem(show.getMaTL());
+        }
+    }
+
+    public void ShowTuaSach() {
+        List<TuaSach> tuasach = userTS.getAll();
+        int stt = 0;
+        modelTuaSach.setRowCount(0);
+        for (TuaSach show : tuasach) {
+            stt++;
+            modelTuaSach.addRow(new Object[]{stt, show.getMaTS(), show.getTenTS(), show.getMaTG(), show.getMaTL(), show.getTomTat(), show.getSoLuong()});
+        }
+    }
+
+    public void ShowTheLoai() {
+        List<TheLoai> theloai = userTL.getAll();
+        int stt = 0;
+        modelTheLoai.setRowCount(0);
+        for (TheLoai show : theloai) {
+            stt++;
+            modelTheLoai.addRow(new Object[]{stt, show.getMaTL(), show.getTenTL()});
+        }
     }
 
     /**
@@ -218,13 +265,13 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
                             .addComponent(txtTentuaSach5)
                             .addComponent(txtMaTuaSach5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jLabel36))
-                .addGap(64, 64, 64)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThem6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnLuu6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoa6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCapnhat6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btTracuu5_1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnThem6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btTracuu5_1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCapnhat6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnXoa6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
@@ -242,7 +289,7 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
                         .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTentuaSach5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel31)
                             .addComponent(cbbMaTacGia5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -270,7 +317,7 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
                             .addGroup(jPanel23Layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(jLabel34)
-                                .addGap(18, 18, Short.MAX_VALUE))
+                                .addGap(18, 22, Short.MAX_VALUE))
                             .addGroup(jPanel23Layout.createSequentialGroup()
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
@@ -347,50 +394,55 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel38))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTenTheLoai5, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                    .addComponent(txtMaTheLoai5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThem7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLuu7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoa7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCapnhat7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btTracuu5_2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel38))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTenTheLoai5)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(txtMaTheLoai5, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btTracuu5_2))))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnLuu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnXoa7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCapnhat7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnThem7, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(btTracuu5_2)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btTracuu5_2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addComponent(btnLuu7)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnThem7))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(btnXoa7)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCapnhat7))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMaTheLoai5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel39)
-                            .addComponent(txtTenTheLoai5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(txtMaTheLoai5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(txtTenTheLoai5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnLuu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThem7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXoa7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCapnhat7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
         );
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
@@ -398,10 +450,10 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,10 +461,20 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        tblTuaSach5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTuaSach5MouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(tblTuaSach5);
 
         jButton18.setBackground(java.awt.SystemColor.activeCaption);
 
+        tblTheLoai5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTheLoai5MouseClicked(evt);
+            }
+        });
         jScrollPane8.setViewportView(tblTheLoai5);
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -425,9 +487,9 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8))
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,7 +524,7 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1091, Short.MAX_VALUE)
+            .addGap(0, 1099, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -482,38 +544,42 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
 
     private void btTracuu5_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu5_1ActionPerformed
         // TODO add your handling code here:
-        String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Tựa sách.",JOptionPane.INFORMATION_MESSAGE);
+        String str = JOptionPane.showInputDialog(this, "Vui lòng nhập tên Tựa sách.", JOptionPane.INFORMATION_MESSAGE);
 
-        defaultTableModel6.setRowCount(0);
+        modelTuaSach.setRowCount(0);
         List<TuaSach> user_TS = userTS.findByName(str);
         int sttts = 0;
         for (TuaSach users : user_TS) {
             sttts++;
-            defaultTableModel6.addRow(new Object[]{sttts, users.getMaTS(), users.getTenTS(), users.getMaTG(), users.getMaTL(), users.getTomTat(), users.getSoLuong()});
+            modelTuaSach.addRow(new Object[]{sttts, users.getMaTS(), users.getTenTS(), users.getMaTG(), users.getMaTL(), users.getTomTat(), users.getSoLuong()});
         }
-        if (defaultTableModel6.getRowCount()==0){
-            JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
-            List<TuaSach> user_TS2 = userTS.getAll();
-            int sttts2 = 0;
-            for (TuaSach users : user_TS2) {
-                sttts2++;
-                defaultTableModel6.addRow(new Object[]{sttts2, users.getMaTS(), users.getTenTS(), users.getMaTG(), users.getMaTL(), users.getTomTat(), users.getSoLuong()});
-            }
+        if (modelTuaSach.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            ShowTuaSach();
         }
     }//GEN-LAST:event_btTracuu5_1ActionPerformed
 
     private void btnXoa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa6ActionPerformed
         // TODO add your handling code here:
         int row = tblTuaSach5.getSelectedRow();
-        if (row == -1){
-            JOptionPane.showMessageDialog(this,"Vui lòng chọn Tựa sách muốn xóa","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }else
-        {
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Tựa sách muốn xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
             int confident = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa Tựa sách này hay không!");
             if (confident == JOptionPane.YES_OPTION) {
                 String maTS = String.valueOf(tblTuaSach5.getValueAt(row, 1));
                 userTS.remove(maTS);
-                defaultTableModel6.removeRow(row);
+                JOptionPane.showConfirmDialog(this, "Xóa thành công");
+                txtMaTuaSach5.setText("");
+                txtTentuaSach5.setText("");
+                cbbMaTacGia5.setSelectedIndex(0);
+
+                cbbMaTheLoai5.setSelectedIndex(0);
+
+                txtSoLuong5.setText("");
+
+                txtNDtomtat5.setText("");
+                ShowTuaSach();
             }
         }
     }//GEN-LAST:event_btnXoa6ActionPerformed
@@ -522,26 +588,15 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtMaTuaSach5.setText("");
         txtTentuaSach5.setText("");
-        cbbMaTacGia5.setSelectedItem(0);
-        List<TacGia> user_TG = userTG.getAll();
-        for(TacGia users : user_TG){
-            cbbMaTacGia5.addItem(users.getMaTG());
-        }
-        cbbMaTheLoai5.setSelectedItem(0);
-        List<TheLoai> user_TL = userTL.getAll();
-        for(TheLoai users: user_TL){
-            cbbMaTheLoai5.addItem(users.getMaTL());
-        }
+        cbbMaTacGia5.setSelectedIndex(0);
+
+        cbbMaTheLoai5.setSelectedIndex(0);
+
         txtSoLuong5.setText("");
 
         txtNDtomtat5.setText("");
-        defaultTableModel6.setRowCount(0);
-        List<TuaSach> user_TS = userTS.getAll();
-        int sttts =0;
-        for(TuaSach users:user_TS){
-            sttts++;
-            defaultTableModel6.addRow(new Object[]{sttts,users.getMaTS(),users.getTenTS(),users.getMaTG(),users.getMaTL(),users.getTomTat(),users.getSoLuong()});
-        }
+        ShowTuaSach();
+
     }//GEN-LAST:event_btnCapnhat6ActionPerformed
 
     private void btnThem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem6ActionPerformed
@@ -555,6 +610,18 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         List<TuaSach> list = new ArrayList<TuaSach>();
         list.add(tuaSach);
         userTS.insert(tuaSach);
+        JOptionPane.showConfirmDialog(this, "Thêm thành công");
+        ShowTuaSach();
+        txtMaTuaSach5.setText("");
+        txtTentuaSach5.setText("");
+        cbbMaTacGia5.setSelectedIndex(0);
+
+        cbbMaTheLoai5.setSelectedIndex(0);
+
+        txtSoLuong5.setText("");
+
+        txtNDtomtat5.setText("");
+
 
     }//GEN-LAST:event_btnThem6ActionPerformed
 
@@ -567,45 +634,52 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         tuaSach.setMaTL(String.valueOf(cbbMaTheLoai5.getSelectedItem()));
         tuaSach.setTomTat(txtNDtomtat5.getText());
         tuaSach.setSoLuong(Integer.valueOf(txtSoLuong5.getText()));
-        List<TuaSach> list = new ArrayList<TuaSach>();
-        list.add(tuaSach);
         userTS.update(tuaSach);
+        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        ShowTuaSach();
+        txtMaTuaSach5.setText("");
+        txtTentuaSach5.setText("");
+        cbbMaTacGia5.setSelectedIndex(0);
+
+        cbbMaTheLoai5.setSelectedIndex(0);
+
+        txtSoLuong5.setText("");
+
+        txtNDtomtat5.setText("");
+
     }//GEN-LAST:event_btnLuu6ActionPerformed
 
     private void btTracuu5_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu5_2ActionPerformed
         // TODO add your handling code here:
-        String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Thể loại.",JOptionPane.INFORMATION_MESSAGE);
+        String str = JOptionPane.showInputDialog(this, "Vui lòng nhập tên Thể loại.", JOptionPane.INFORMATION_MESSAGE);
 
-        defaultTableModel7.setRowCount(0);
+        modelTheLoai.setRowCount(0);
         List<TheLoai> user_TL = userTL.findByName(str);
         int stttl = 0;
         for (TheLoai users : user_TL) {
             stttl++;
-            defaultTableModel7.addRow(new Object[]{stttl, users.getMaTL(), users.getTenTL()});
+            modelTheLoai.addRow(new Object[]{stttl, users.getMaTL(), users.getTenTL()});
         }
-        if (defaultTableModel7.getRowCount()==0){
-            JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
-            List<TheLoai> user_TL2 = userTL.findByName(str);
-            int stttl2 = 0;
-            for (TheLoai users : user_TL2) {
-                stttl2++;
-                defaultTableModel7.addRow(new Object[]{stttl2, users.getMaTL(), users.getTenTL()});
-            }
+        if (modelTheLoai.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            ShowTheLoai();
         }
     }//GEN-LAST:event_btTracuu5_2ActionPerformed
 
     private void btnXoa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa7ActionPerformed
         // TODO add your handling code here:
         int row = tblTheLoai5.getSelectedRow();
-        if (row == -1){
-            JOptionPane.showMessageDialog(this,"Vui lòng chọn Thể loại muốn xóa","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }else
-        {
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Thể loại muốn xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
             int confident = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa Thể loại này hay không!");
             if (confident == JOptionPane.YES_OPTION) {
                 String maTL = String.valueOf(tblTheLoai5.getValueAt(row, 1));
                 userTL.remove(maTL);
-                defaultTableModel7.removeRow(row);
+                JOptionPane.showConfirmDialog(this, "Xóa thành công");
+                ShowTheLoai();
+                txtMaTheLoai5.setText("");
+                txtTenTheLoai5.setText("");
             }
         }
     }//GEN-LAST:event_btnXoa7ActionPerformed
@@ -615,13 +689,8 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
 
         txtMaTheLoai5.setText("");
         txtTenTheLoai5.setText("");
-        defaultTableModel7.setRowCount(0);
-        List<TheLoai> user_TL = userTL.getAll();
-        int stttl=0;
-        for(TheLoai users : user_TL){
-            stttl++;
-            defaultTableModel7.addRow(new Object[]{stttl,users.getMaTL(),users.getTenTL()});
-        }
+
+        ShowTheLoai();
     }//GEN-LAST:event_btnCapnhat7ActionPerformed
 
     private void btnThem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem7ActionPerformed
@@ -631,6 +700,8 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         List<TheLoai> list = new ArrayList<TheLoai>();
         list.add(theLoai);
         userTL.insert(theLoai);
+        JOptionPane.showConfirmDialog(this, "Thêm thành công");
+        ShowTheLoai();
     }//GEN-LAST:event_btnThem7ActionPerformed
 
     private void btnLuu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu7ActionPerformed
@@ -640,8 +711,34 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         theLoai.setTenTL(txtTenTheLoai5.getText());
         List<TheLoai> list = new ArrayList<TheLoai>();
         list.add(theLoai);
-        userTL.insert(theLoai);
+        userTL.update(theLoai);
+        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        ShowTheLoai();
+        txtMaTheLoai5.setText("");
+        txtTenTheLoai5.setText("");
+        txtMaTheLoai5.setText("");
+        txtTenTheLoai5.setText("");
     }//GEN-LAST:event_btnLuu7ActionPerformed
+
+    private void tblTuaSach5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTuaSach5MouseClicked
+        // TODO add your handling code here:
+
+        int row = tblTuaSach5.getSelectedRow();
+        txtMaTuaSach5.setText(String.valueOf(tblTuaSach5.getValueAt(row, 1)));
+        txtTentuaSach5.setText(String.valueOf(tblTuaSach5.getValueAt(row, 2)));
+        cbbMaTacGia5.setSelectedItem(String.valueOf(tblTuaSach5.getValueAt(row, 3)));
+        cbbMaTheLoai5.setSelectedItem(String.valueOf(tblTuaSach5.getValueAt(row, 4)));
+        txtNDtomtat5.setText(String.valueOf(tblTuaSach5.getValueAt(row, 5)));
+        txtSoLuong5.setText(String.valueOf(tblTuaSach5.getValueAt(row, 6)));
+    }//GEN-LAST:event_tblTuaSach5MouseClicked
+
+    private void tblTheLoai5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTheLoai5MouseClicked
+        // TODO add your handling code here:
+
+        int row = tblTheLoai5.getSelectedRow();
+        txtMaTheLoai5.setText(String.valueOf(tblTheLoai5.getValueAt(row, 1)));
+        txtTenTheLoai5.setText(String.valueOf(tblTheLoai5.getValueAt(row, 2)));
+    }//GEN-LAST:event_tblTheLoai5MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

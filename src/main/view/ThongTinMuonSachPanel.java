@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.Views;
+package main.view;
 import java.awt.BorderLayout;
 import static java.lang.String.format;
 import static java.lang.String.format;
@@ -48,15 +48,7 @@ import main.dao.TuaSachDao;
  * @author Admin
  */
 public class ThongTinMuonSachPanel extends javax.swing.JPanel {
-    DefaultTableModel defaultTableModel1;
-    DefaultTableModel defaultTableModel2;
-    DefaultTableModel defaultTableModel3;
-    DefaultTableModel defaultTableModel4;
-    DefaultTableModel defaultTableModel5;
-    DefaultTableModel defaultTableModel6;
-    DefaultTableModel defaultTableModel7;
-    DefaultTableModel defaultTableModel8;
-    DefaultTableModel defaultTableModel9;
+    DefaultTableModel modelMuonSach;
     DocGiaDao userDG;
     DauSachDao userDS;
     ThongTinMuonTraDao userTTMT;
@@ -70,8 +62,40 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
      */
     public ThongTinMuonSachPanel() {
         initComponents();
+        modelMuonSach = new DefaultTableModel();
+        userTTMT = new ThongTinMuonTraDao();
+        userTS = new TuaSachDao();
+        userDS = new DauSachDao();
+        userDG = new DocGiaDao();
+        tblMuontraSach2.setModel(modelMuonSach);
+        modelMuonSach.addColumn("STT");
+        modelMuonSach.addColumn("Mã mượn");
+        modelMuonSach.addColumn("Mã độc giả");
+        modelMuonSach.addColumn("Mã đầu sách");
+        modelMuonSach.addColumn("Số lượng");
+        modelMuonSach.addColumn("Ngày mượn");
+        modelMuonSach.addColumn("Ngày hẹn trả");
+        modelMuonSach.addColumn("Ngày trả");
+        modelMuonSach.addColumn("Ghi chú");
+        tblMuontraSach2.setRowHeight(40);
+      
+        List<TuaSach> user_TS = userTS.getAll();
+        for(TuaSach users : user_TS){
+            CbbTenSach2.addItem(users.getTenTS());
+        }
+ 
+        ShowMuonTra();
     }
 
+    public void ShowMuonTra(){
+        List<ThongTinMuonTra> thongTinMuonTra = userTTMT.getAll();
+        int stt=0;
+        modelMuonSach.setRowCount(0);
+        for(ThongTinMuonTra show : thongTinMuonTra){
+            stt++;
+            modelMuonSach.addRow(new Object[]{stt, show.getMaMuon(), show.getMaDG(),show.getMaDS(),show.getSoLuong(),show.getNgayMuon(),show.getNgayHenTra(),show.getNgayTra(),show.getGhiChu()});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -353,6 +377,11 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
 
             }
         ));
+        tblMuontraSach2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMuontraSach2MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblMuontraSach2);
 
         jButton15.setBackground(java.awt.SystemColor.activeCaption);
@@ -431,7 +460,17 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
                 else
                 {
                     userTTMT.remove(maMuon);
-                    defaultTableModel2.removeRow(row);
+                    JOptionPane.showConfirmDialog(this, "Xóa phiếu mượn thành công");
+                    txtMaMuon2.setText("");
+        txtMaDG2.setText("");
+        CbbTenSach2.setSelectedIndex(0);
+        List<TuaSach> user_TS = userTS.getAll();
+        for(TuaSach users : user_TS){
+            CbbTenSach2.addItem(users.getTenTS());
+        }
+        txtGhichu2.setText("");
+        txtSoluong2.setText("");
+                   ShowMuonTra();
 
                 }
 
@@ -445,7 +484,7 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtMaMuon2.setText("");
         txtMaDG2.setText("");
-        CbbTenSach2.setSelectedItem(0);
+        CbbTenSach2.setSelectedIndex(0);
         List<TuaSach> user_TS = userTS.getAll();
         for(TuaSach users : user_TS){
             CbbTenSach2.addItem(users.getTenTS());
@@ -459,13 +498,7 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
             //        } catch (ParseException ex) {
             //            Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
             //        }
-        defaultTableModel2.setRowCount(0);
-        List<ThongTinMuonTra> user_TTMT = userTTMT.getAll();
-        int sttttmt=0;
-        for(ThongTinMuonTra users : user_TTMT){
-            sttttmt++;
-            defaultTableModel2.addRow(new Object[]{sttttmt,users.getMaMuon(),users.getMaDG(),users.getMaDS(),users.getSoLuong(),users.getMaMuon(),users.getNgayHenTra(),users.getNgayTra()});
-        }
+        ShowMuonTra();
     }//GEN-LAST:event_btnCapnhat2ActionPerformed
 
     private void btnThem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem2ActionPerformed
@@ -477,12 +510,13 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         thongTinMuonTra.setMaDG(txtMaDG2.getText());
         String tensach = String.valueOf(CbbTenSach2.getSelectedItem());
         List<TuaSach> user_TS = userTS.getAll();
-        for(TuaSach user : user_TS){
-            if(user.getTenTS().equals(tensach)){
+        for (TuaSach user : user_TS) {
+            if (user.getTenTS().equals(tensach)) {
                 List<DauSach> user_DS = userDS.getAll();
-                for(DauSach users : user_DS){
-                    if (user.getMaTS().equals(users.getMaTS()))
-                    thongTinMuonTra.setMaDS(users.getMaDS());
+                for (DauSach users : user_DS) {
+                    if (user.getMaTS().equals(users.getMaTS())) {
+                        thongTinMuonTra.setMaDS(users.getMaDS());
+                    }
                 }
             }
         }
@@ -490,9 +524,18 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         thongTinMuonTra.setNgayMuon(ngayMuon);
         thongTinMuonTra.setNgayHenTra(ngayHenTra);
         thongTinMuonTra.setNgayTra(ngayTra);
-        List<ThongTinMuonTra> list = new ArrayList<ThongTinMuonTra>();
-        list.add(thongTinMuonTra);
         userTTMT.insert(thongTinMuonTra);
+        JOptionPane.showConfirmDialog(this, "Thêm phiếu mượn thành công");
+        ShowMuonTra();
+        txtMaMuon2.setText("");
+        txtMaDG2.setText("");
+        CbbTenSach2.setSelectedIndex(0);
+        List<TuaSach> user_TS1 = userTS.getAll();
+        for (TuaSach users : user_TS1) {
+            CbbTenSach2.addItem(users.getTenTS());
+        }
+        txtGhichu2.setText("");
+        txtSoluong2.setText("");
     }//GEN-LAST:event_btnThem2ActionPerformed
 
     private void btnLuu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu2ActionPerformed
@@ -521,6 +564,17 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         List<ThongTinMuonTra> list = new ArrayList<ThongTinMuonTra>();
         list.add(thongTinMuonTra);
         userTTMT.update(thongTinMuonTra);
+        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        txtMaMuon2.setText("");
+        txtMaDG2.setText("");
+        CbbTenSach2.setSelectedIndex(0);
+        List<TuaSach> user_TS1 = userTS.getAll();
+        for(TuaSach users : user_TS1){
+            CbbTenSach2.addItem(users.getTenTS());
+        }
+        txtGhichu2.setText("");
+        txtSoluong2.setText("");
+        ShowMuonTra();
     }//GEN-LAST:event_btnLuu2ActionPerformed
 
     private void btTracuu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu2ActionPerformed
@@ -532,23 +586,61 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
 
             List<ThongTinMuonTra> user_TTMT = userTTMT.findByName(user.getMaDG());
             int sttttmt=0;
-            defaultTableModel2.setRowCount(0);
+            modelMuonSach.setRowCount(0);
             for(ThongTinMuonTra users : user_TTMT){
                 sttttmt++;
-                defaultTableModel2.addRow(new Object[]{sttttmt, users.getMaMuon(), users.getMaDG(), users.getMaDS(), users.getSoLuong(), users.getNgayMuon(), users.getNgayHenTra(), users.getNgayTra(), users.getGhiChu()});
+                modelMuonSach.addRow(new Object[]{sttttmt, users.getMaMuon(), users.getMaDG(), users.getMaDS(), users.getSoLuong(), users.getNgayMuon(), users.getNgayHenTra(), users.getNgayTra(), users.getGhiChu()});
             }
-            if (defaultTableModel2.getRowCount()==0){
+            if (modelMuonSach.getRowCount()==0){
                 JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
-                List<ThongTinMuonTra> user_TTMT2 = userTTMT.getAll();
-                int sttttmt2=0;
-                for(ThongTinMuonTra users : user_TTMT2){
-                    sttttmt2++;
-                    defaultTableModel2.addRow(new Object[]{sttttmt2, users.getMaMuon(), users.getMaDG(), users.getMaDS(), users.getSoLuong(), users.getNgayMuon(), users.getNgayHenTra(), users.getNgayTra(), users.getGhiChu()});
-                }
+                ShowMuonTra();
             }
         }
 
     }//GEN-LAST:event_btTracuu2ActionPerformed
+
+    private void tblMuontraSach2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMuontraSach2MouseClicked
+        // TODO add your handling code here:
+        int row = tblMuontraSach2.getSelectedRow();
+                txtMaMuon2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 1)));
+                txtMaDG2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 2)));
+                String string = String.valueOf(tblMuontraSach2.getValueAt(row, 3));
+                List<ThongTinMuonTra> user_TTMT2 = userTTMT.getAll();
+                for (ThongTinMuonTra user : user_TTMT2) {
+                    List<DauSach> user_DS2 = userDS.getAll();
+                    for (DauSach users : user_DS2) {
+                        if (string.equals(users.getMaDS())) {
+                            List<TuaSach> user_TS2 = userTS.getAll();
+                            for (TuaSach userss : user_TS2) {
+                                if (users.getMaTS().equals(userss.getMaTS())) {
+                                    CbbTenSach2.setSelectedItem(userss.getTenTS());
+                                }
+                            }
+                        }
+                    }
+                }
+                txtSoluong2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 4)));
+                txtGhichu2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 8)));
+                     
+                String str1 = String.valueOf(tblMuontraSach2.getValueAt(row, 5));
+                String str2 = String.valueOf(tblMuontraSach2.getValueAt(row, 6));
+                String str3="";
+                if(String.valueOf(tblMuontraSach2.getValueAt(row, 7))!=null){
+                    str3+=String.valueOf(tblMuontraSach2.getValueAt(row, 7));
+                }
+                else
+                    str3="";
+                try {
+                    Date NgayMuon = f.parse(str1);
+                    Date NgayHenTra = f.parse(str2);
+                    Date NgayTra = f.parse(str3);
+                        txtNgayMuon2.setDate(NgayMuon);
+                        txtNgayHenTra2.setDate(NgayHenTra);
+                        txtNgayTra2.setDate(NgayTra);
+                } catch (ParseException ex) {
+                    Logger.getLogger(ThongTinMuonSachPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_tblMuontraSach2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

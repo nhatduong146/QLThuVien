@@ -63,6 +63,7 @@ public class DocGiaDao {
                 + "DiaChi = ?, SoDienThoai = ?, NgayDangKi = ?, NgayHetHanDk = ?"
                 + " WHERE maDocGia = ?";
         PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, docGia.getHoten());

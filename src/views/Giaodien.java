@@ -2055,9 +2055,7 @@ public class Giaodien extends javax.swing.JFrame {
         listSelectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                int row = tblNhaSanXuat4.getSelectedRow();
-                txtMaNXB4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 1)));
-                txtTenNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 2)));
+                
               
             }
         });
@@ -2069,9 +2067,7 @@ public class Giaodien extends javax.swing.JFrame {
         listSelectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                int row = tblTacgia4.getSelectedRow();
-                txtMaTacGia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 1)));
-                txtTenTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 2)));
+                
               
             }
         });

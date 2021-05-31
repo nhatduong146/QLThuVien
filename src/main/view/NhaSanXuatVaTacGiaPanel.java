@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.Views;
+package main.view;
 
 import java.awt.BorderLayout;
 import static java.lang.String.format;
@@ -13,12 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import main.dao.DocGiaDao;
 import main.dao.DauSachDao;
@@ -27,28 +22,17 @@ import main.dao.NhaXuatBanDao;
 import main.dao.TacGiaDao;
 import main.dao.TheLoaiDao;
 import main.dao.TuaSachDao;
-import main.model.DocGia;
-import main.model.TacGia;
-import main.model.TheLoai;
-import main.model.TuaSach;
-import main.model.DauSach;
 import main.model.NhaXuatBan;
-import main.model.ThongTinMuonTra;
+import main.model.TacGia;
 
 /**
  *
  * @author Admin
  */
 public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
-    DefaultTableModel defaultTableModel1;
-    DefaultTableModel defaultTableModel2;
-    DefaultTableModel defaultTableModel3;
-    DefaultTableModel defaultTableModel4;
-    DefaultTableModel defaultTableModel5;
-    DefaultTableModel defaultTableModel6;
-    DefaultTableModel defaultTableModel7;
-    DefaultTableModel defaultTableModel8;
-    DefaultTableModel defaultTableModel9;
+    DefaultTableModel modelNhaSanXuat;
+    DefaultTableModel modelTacGia;
+
     DocGiaDao userDG;
     DauSachDao userDS;
     ThongTinMuonTraDao userTTMT;
@@ -62,8 +46,41 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
      */
     public NhaSanXuatVaTacGiaPanel() {
         initComponents();
+        modelNhaSanXuat = new DefaultTableModel();
+        modelTacGia = new DefaultTableModel();
+        userNXB = new NhaXuatBanDao();
+        userTG = new TacGiaDao();
+        tblNhaSanXuat4.setModel(modelNhaSanXuat);
+        modelNhaSanXuat.addColumn("STT");
+        modelNhaSanXuat.addColumn("Mã nhà sản xuất");
+        modelNhaSanXuat.addColumn("Tên nhà sản xuất");
+        ShowNSX();
+        tblTacgia4.setModel(modelTacGia);
+        modelTacGia.addColumn("STT");
+        modelTacGia.addColumn("Mã tác giả");
+        modelTacGia.addColumn("Tên tác giả");
+        tblNhaSanXuat4.setRowHeight(40);
+        tblTacgia4.setRowHeight(40);
+        ShowTacGia();
     }
-
+    public void ShowNSX(){
+        List<NhaXuatBan> user_NXB= userNXB.getAll();
+        int stt = 0;
+        modelNhaSanXuat.setRowCount(0);
+        for (NhaXuatBan users : user_NXB) {
+            stt++;
+            modelNhaSanXuat.addRow(new Object[]{stt, users.getMaNXB(), users.getTenNXB()});
+        }
+       }
+    public void ShowTacGia(){
+    List<TacGia> user_TG = userTG.getAll();
+        int stt = 0;
+        modelTacGia.setRowCount(0);
+        for (TacGia users : user_TG) {
+            stt++;
+            modelTacGia.addRow(new Object[]{stt, users.getMaTG(), users.getHoten()});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -225,6 +242,11 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
+        tblNhaSanXuat4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhaSanXuat4MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tblNhaSanXuat4);
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
@@ -340,6 +362,11 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
                 .addGap(40, 40, 40))
         );
 
+        tblTacgia4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTacgia4MouseClicked(evt);
+            }
+        });
         jScrollPane11.setViewportView(tblTacgia4);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -408,21 +435,17 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Nhà xuất bản.",JOptionPane.INFORMATION_MESSAGE);
 
-        defaultTableModel4.setRowCount(0);
+        modelNhaSanXuat.setRowCount(0);
         List<NhaXuatBan> user_NXB = userNXB.findByName(str);
         int sttnxb = 0;
         for (NhaXuatBan users : user_NXB) {
             sttnxb++;
-            defaultTableModel4.addRow(new Object[]{sttnxb, users.getMaNXB(), users.getTenNXB()});
+            modelNhaSanXuat.addRow(new Object[]{sttnxb, users.getMaNXB(), users.getTenNXB()});
         }
-        if (defaultTableModel4.getRowCount()==0){
+        if (modelNhaSanXuat.getRowCount()==0){
             JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
             List<NhaXuatBan> user_NXB2 = userNXB.getAll();
-            int sttnxb2 = 0;
-            for (NhaXuatBan users : user_NXB2) {
-                sttnxb2++;
-                defaultTableModel4.addRow(new Object[]{sttnxb2, users.getMaNXB(), users.getTenNXB()});
-            }
+           ShowTacGia();
         }
     }//GEN-LAST:event_btTracuu4_1ActionPerformed
 
@@ -438,7 +461,10 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
             if (confident == JOptionPane.YES_OPTION) {
                 String maNXB = String.valueOf(tblNhaSanXuat4.getValueAt(row, 1));
                 userNXB.remove(maNXB);
-                defaultTableModel4.removeRow(row);
+                JOptionPane.showConfirmDialog(this, "Xóa nhà xuất bản thàng công");
+                txtTenNhaSX4.setText("");
+        txtMaNXB4.setText("");
+             ShowNSX();
 
             }
         }
@@ -449,13 +475,7 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtTenNhaSX4.setText("");
         txtMaNXB4.setText("");
-        defaultTableModel4.setRowCount(0);
-        List<NhaXuatBan> user_NXB = userNXB.getAll();
-        int sttnxb=0;
-        for(NhaXuatBan users : user_NXB){
-            sttnxb++;
-            defaultTableModel4.addRow(new Object[]{sttnxb,users.getMaNXB(),users.getTenNXB()});
-        }
+        ShowNSX();
     }//GEN-LAST:event_btnCapnhat4ActionPerformed
 
     private void btnThem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem4ActionPerformed
@@ -465,6 +485,12 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         List<NhaXuatBan> list = new ArrayList<NhaXuatBan>();
         list.add(nhaXuatBan);
         userNXB.insert(nhaXuatBan);
+        JOptionPane.showConfirmDialog(this, "Thêm thành công");
+        txtTenNhaSX4.setText("");
+        txtMaNXB4.setText("");
+        txtTenNhaSX4.setText("");
+        txtMaNXB4.setText("");
+        ShowNSX();
     }//GEN-LAST:event_btnThem4ActionPerformed
 
     private void btnLuu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu4ActionPerformed
@@ -475,27 +501,24 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         List<NhaXuatBan> list = new ArrayList<NhaXuatBan>();
         list.add(nhaXuatBan);
         userNXB.update(nhaXuatBan);
+        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        ShowNSX();
     }//GEN-LAST:event_btnLuu4ActionPerformed
 
     private void btTracuu4_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu4_2ActionPerformed
         // TODO add your handling code here:
         String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Tác giả.",JOptionPane.INFORMATION_MESSAGE);
 
-        defaultTableModel5.setRowCount(0);
+        modelTacGia.setRowCount(0);
         List<TacGia> user_TG = userTG.findByName(str);
         int stttg = 0;
         for (TacGia users : user_TG) {
             stttg++;
-            defaultTableModel5.addRow(new Object[]{stttg, users.getMaTG(), users.getHoten()});
+            modelTacGia.addRow(new Object[]{stttg, users.getMaTG(), users.getHoten()});
         }
-        if (defaultTableModel5.getRowCount()==0){
+        if (modelTacGia.getRowCount()==0){
             JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
-            List<TacGia> user_TG2 = userTG.getAll();
-            int sttnxb2 = 0;
-            for (TacGia users : user_TG2) {
-                sttnxb2++;
-                defaultTableModel5.addRow(new Object[]{sttnxb2, users.getMaTG(), users.getHoten()});
-            }
+            ShowTacGia();
         }
     }//GEN-LAST:event_btTracuu4_2ActionPerformed
 
@@ -510,7 +533,10 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
             if (confident == JOptionPane.YES_OPTION) {
                 String maTG = String.valueOf(tblTacgia4.getValueAt(row, 1));
                 userTG.remove(maTG);
-                defaultTableModel5.removeRow(row);
+                JOptionPane.showConfirmDialog(this, "Xóa thành công");
+                  txtMaTacGia4.setText("");
+        txtTenTacgia4.setText("");
+                ShowTacGia();
             }
         }
     }//GEN-LAST:event_btnXoa5ActionPerformed
@@ -519,13 +545,7 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtMaTacGia4.setText("");
         txtTenTacgia4.setText("");
-        defaultTableModel5.setRowCount(0);
-        List<TacGia> user_TG = userTG.getAll();
-        int stttg = 0;
-        for(TacGia users: user_TG){
-            stttg++;
-            defaultTableModel5.addRow(new Object[]{stttg,users.getMaTG(),users.getHoten()});
-        }
+       ShowTacGia();
     }//GEN-LAST:event_btnCapnhat5ActionPerformed
 
     private void btnThem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem5ActionPerformed
@@ -535,6 +555,10 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         List<TacGia> list = new ArrayList<TacGia>();
         list.add(tacGia);
         userTG.insert(tacGia);
+        JOptionPane.showConfirmDialog(this, "Thêm thành công");
+          txtMaTacGia4.setText("");
+        txtTenTacgia4.setText("");
+        ShowTacGia();
     }//GEN-LAST:event_btnThem5ActionPerformed
 
     private void btnLuu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu5ActionPerformed
@@ -542,10 +566,28 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         TacGia tacGia = new TacGia();
         tacGia.setMaTG(txtMaTacGia4.getText());
         tacGia.setHoten(txtTenTacgia4.getText());
-        List<TacGia> list = new ArrayList<TacGia>();
-        list.add(tacGia);
+        
         userTG.update(tacGia);
+        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+          txtMaTacGia4.setText("");
+        txtTenTacgia4.setText("");
+        ShowTacGia();
     }//GEN-LAST:event_btnLuu5ActionPerformed
+
+    private void tblNhaSanXuat4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhaSanXuat4MouseClicked
+        // TODO add your handling code here:
+        int row = tblNhaSanXuat4.getSelectedRow();
+                txtMaNXB4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 1)));
+                txtTenNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 2)));
+    }//GEN-LAST:event_tblNhaSanXuat4MouseClicked
+
+    private void tblTacgia4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTacgia4MouseClicked
+        // TODO add your handling code here:
+        
+        int row = tblTacgia4.getSelectedRow();
+                txtMaTacGia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 1)));
+                txtTenTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 2)));
+    }//GEN-LAST:event_tblTacgia4MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
