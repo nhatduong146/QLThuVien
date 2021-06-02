@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import main.model.DauSach;
+import main.model.DauSach;
 
 /**
  *
@@ -103,8 +104,57 @@ public class DauSachDao {
         return list;
     }
 
-    // khong co ten dau sach nen khong co phuong thuc findByName()
+    public int getTotalItem(){
+        String sql = "SELECT COUNT(MaDauSach)\n" +
+                        "FROM tblDauSach";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+                return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public int getTotalPage(int maxPageItem){
+        if(getTotalItem()%maxPageItem == 0)
+            return getTotalItem()/maxPageItem;
+        else
+            return getTotalItem()/maxPageItem + 1; 
+    }
+    
+    public List<DauSach> getByPage(int maxPageItem, int page){
+        List<DauSach> list = new ArrayList<DauSach>();
+        String sql =    "SELECT * FROM tblDauSach\n" +
+                        "Order by MaDauSach\n" +
+                        "OFFSET ? ROWS\n" +
+                        "FETCH NEXT ? ROWS ONLY";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, (page-1)*maxPageItem);
+            ps.setInt(2, maxPageItem);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                list.add(new DauSach(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
+        DauSachDao dauSachDao = new DauSachDao();
+        System.out.println(dauSachDao.getByPage(5, 2));
     }
 }

@@ -80,15 +80,17 @@ public class DocGiaDao {
         
     }
     
-    public void remove(String maDG){
+    public boolean remove(String maDG){
         String sql = "DELETE FROM tblDocGia WHERE maDocGia = ?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, maDG);
-            ps.executeUpdate();
+            if(ps.executeUpdate() != 0)
+                return true;
         } catch (Exception e) {
         }
+        return false;
     }
     
     public List<DocGia> findByName(String name){
@@ -113,8 +115,60 @@ public class DocGiaDao {
         return list;
     }
     
+    public int getTotalItem(){
+        String sql = "SELECT COUNT(MaDocGia)\n" +
+                        "FROM tblDocGia";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+                return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public int getTotalPage(int maxPageItem){
+        if(getTotalItem()%maxPageItem == 0)
+            return getTotalItem()/maxPageItem;
+        else
+            return getTotalItem()/maxPageItem + 1; 
+    }
+    
+    public List<DocGia> getByPage(int maxPageItem, int page){
+        List<DocGia> list = new ArrayList<DocGia>();
+        String sql =    "SELECT * FROM tblDocGia\n" +
+                        "Order by MaDocGia\n" +
+                        "OFFSET ? ROWS\n" +
+                        "FETCH NEXT ? ROWS ONLY";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, (page-1)*maxPageItem);
+            ps.setInt(2, maxPageItem);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                list.add(new DocGia(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), 
+                                        rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
     public static void main(String[] args) {
         DocGiaDao docGiaDao = new DocGiaDao();
-        System.out.println(docGiaDao.findByName("Cường"));
+        System.out.println(docGiaDao.getByPage(8, 3));
     }
+    
+    
 }

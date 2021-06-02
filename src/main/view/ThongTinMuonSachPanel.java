@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package main.view;
+
 import java.awt.BorderLayout;
 import static java.lang.String.format;
 import static java.lang.String.format;
@@ -48,26 +49,41 @@ import main.dao.TuaSachDao;
  * @author Admin
  */
 public class ThongTinMuonSachPanel extends javax.swing.JPanel {
+
     DefaultTableModel modelMuonSach;
     DocGiaDao userDG;
     DauSachDao userDS;
-    ThongTinMuonTraDao userTTMT;
+    ThongTinMuonTraDao thongTinMuonTraDao;
     NhaXuatBanDao userNXB;
     TacGiaDao userTG;
     TheLoaiDao userTL;
     TuaSachDao userTS;
-  SimpleDateFormat f= new SimpleDateFormat("MMMM dd, yyyy");
+    static int maxPageItem = 8;
+    SimpleDateFormat f = new SimpleDateFormat("MMMM dd, yyyy");
+
     /**
      * Creates new form Muon_traSachJPanel
      */
     public ThongTinMuonSachPanel() {
         initComponents();
-        modelMuonSach = new DefaultTableModel();
-        userTTMT = new ThongTinMuonTraDao();
+        modelMuonSach = new DefaultTableModel() {
+            @Override
+            public java.lang.Class<?> getColumnClass(int columnIndex) {
+                if (columnIndex == 9) {
+                    return Boolean.class;
+                } else {
+                    return String.class;
+                }
+            }
+        };
+
+        thongTinMuonTraDao = new ThongTinMuonTraDao();
         userTS = new TuaSachDao();
         userDS = new DauSachDao();
         userDG = new DocGiaDao();
+
         tblMuontraSach2.setModel(modelMuonSach);
+
         modelMuonSach.addColumn("STT");
         modelMuonSach.addColumn("Mã mượn");
         modelMuonSach.addColumn("Mã độc giả");
@@ -77,25 +93,46 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         modelMuonSach.addColumn("Ngày hẹn trả");
         modelMuonSach.addColumn("Ngày trả");
         modelMuonSach.addColumn("Ghi chú");
+        modelMuonSach.addColumn("Đánh dấu");
+
         tblMuontraSach2.setRowHeight(40);
-      
+        tblMuontraSach2.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tblMuontraSach2.getColumnModel().getColumn(9).setPreferredWidth(20);
+
         List<TuaSach> user_TS = userTS.getAll();
-        for(TuaSach users : user_TS){
+        for (TuaSach users : user_TS) {
             CbbTenSach2.addItem(users.getTenTS());
         }
- 
-        ShowMuonTra();
+
+        for (int i = 1; i <= thongTinMuonTraDao.getTotalPage(maxPageItem); i++) {
+            cbbMuon.addItem(String.valueOf(i));
+        }
+
+        ShowMuonTra(thongTinMuonTraDao.getByPage(maxPageItem, 1), 0);
     }
 
-    public void ShowMuonTra(){
-        List<ThongTinMuonTra> thongTinMuonTra = userTTMT.getAll();
-        int stt=0;
+    public void ShowMuonTra() {
+        List<ThongTinMuonTra> thongTinMuonTra = thongTinMuonTraDao.getAll();
+        int stt = 0;
         modelMuonSach.setRowCount(0);
-        for(ThongTinMuonTra show : thongTinMuonTra){
+        for (ThongTinMuonTra show : thongTinMuonTra) {
             stt++;
-            modelMuonSach.addRow(new Object[]{stt, show.getMaMuon(), show.getMaDG(),show.getMaDS(),show.getSoLuong(),show.getNgayMuon(),show.getNgayHenTra(),show.getNgayTra(),show.getGhiChu()});
+            modelMuonSach.addRow(new Object[]{stt, show.getMaMuon(), show.getMaDG(), show.getMaDS(), show.getSoLuong(),
+                show.getNgayMuon(), show.getNgayHenTra(), show.getNgayTra(), show.getGhiChu(), false});
         }
     }
+
+    public void ShowMuonTra(List<ThongTinMuonTra> thongTinMuonTra, int viTri) {
+        int stt = 0;
+        stt = stt + viTri;
+        modelMuonSach.setRowCount(0);
+        for (ThongTinMuonTra show : thongTinMuonTra) {
+            stt++;
+            modelMuonSach.addRow(new Object[]{stt, show.getMaMuon(), show.getMaDG(), show.getMaDS(), show.getSoLuong(),
+                show.getNgayMuon(), show.getNgayHenTra(), show.getNgayTra(), show.getGhiChu(), false});
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,7 +162,6 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         txtMaMuon2 = new javax.swing.JLabel();
         txtMaDG2 = new javax.swing.JTextField();
         jPanel24 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
         btnXoa2 = new javax.swing.JButton();
         btnCapnhat2 = new javax.swing.JButton();
         btnThem2 = new javax.swing.JButton();
@@ -134,6 +170,12 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblMuontraSach2 = new javax.swing.JTable();
         jButton15 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbbMuon = new javax.swing.JComboBox<>();
+        btnTiepTheo = new javax.swing.JButton();
+        btnTruoc = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 102, 153));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -217,8 +259,8 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMaMuon2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtMaMuon2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel21Layout.createSequentialGroup()
@@ -249,13 +291,12 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(txtSoluong2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jPanel24.setBackground(new java.awt.Color(255, 255, 255));
         jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/resources/library.png"))); // NOI18N
+        jPanel24.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnXoa2.setBackground(new java.awt.Color(0, 102, 153));
         btnXoa2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -267,6 +308,7 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
                 btnXoa2ActionPerformed(evt);
             }
         });
+        jPanel24.add(btnXoa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 113, 43));
 
         btnCapnhat2.setBackground(new java.awt.Color(0, 102, 153));
         btnCapnhat2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -278,6 +320,7 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
                 btnCapnhat2ActionPerformed(evt);
             }
         });
+        jPanel24.add(btnCapnhat2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, 41));
 
         btnThem2.setBackground(new java.awt.Color(0, 102, 153));
         btnThem2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -289,17 +332,19 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
                 btnThem2ActionPerformed(evt);
             }
         });
+        jPanel24.add(btnThem2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 110, -1));
 
         btnLuu2.setBackground(new java.awt.Color(0, 102, 153));
         btnLuu2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLuu2.setForeground(new java.awt.Color(255, 255, 255));
         btnLuu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/resources/floppy-disk (1).png"))); // NOI18N
-        btnLuu2.setText("Save");
+        btnLuu2.setText("Update");
         btnLuu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLuu2ActionPerformed(evt);
             }
         });
+        jPanel24.add(btnLuu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 42, 110, 40));
 
         btTracuu2.setBackground(new java.awt.Color(0, 102, 153));
         btTracuu2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -311,63 +356,7 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
                 btTracuu2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnXoa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCapnhat2))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLuu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(91, 91, 91))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                        .addComponent(btTracuu2)
-                        .addGap(78, 78, 78))))
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLuu2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(btTracuu2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem2)
-                    .addComponent(btnCapnhat2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(jLabel17))
-        );
-
-        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
-        jPanel20.setLayout(jPanel20Layout);
-        jPanel20Layout.setHorizontalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel20Layout.setVerticalGroup(
-            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel24.add(btTracuu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, 42));
 
         tblMuontraSach2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -384,6 +373,30 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tblMuontraSach2);
 
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel20Layout.createSequentialGroup()
+                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 13, Short.MAX_VALUE))
+        );
+
         jButton15.setBackground(java.awt.SystemColor.activeCaption);
         jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/resources/thoat.png"))); // NOI18N
 
@@ -391,45 +404,83 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane3)
-                .addContainerGap())
+                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(264, 264, 264)
+                .addGap(566, 566, 566)
                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Trang");
+
+        cbbMuon.setEditable(true);
+        cbbMuon.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cbbMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbMuonActionPerformed(evt);
+            }
+        });
+
+        btnTiepTheo.setText("Tiếp theo");
+        btnTiepTheo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTiepTheoActionPerformed(evt);
+            }
+        });
+
+        btnTruoc.setText("Trước");
+        btnTruoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTruocActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1091, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(363, 363, 363)
+                .addComponent(btnTruoc)
+                .addGap(53, 53, 53)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(cbbMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btnTiepTheo)
+                .addContainerGap(396, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 26, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(715, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnTruoc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTiepTheo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 53, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -439,40 +490,41 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
 
     private void btnXoa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa2ActionPerformed
         // TODO add your handling code here:
+        Boolean kiemTra = false;
+
         int row = tblMuontraSach2.getSelectedRow();
-        if (row == -1){
-            JOptionPane.showMessageDialog(this,"Vui lòng chọn Đơn mượn muốn xóa","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }else
-        {
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Đơn mượn muốn xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
+
             int confident = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa Đơn mượn này hay không!");
             if (confident == JOptionPane.YES_OPTION) {
-                int dem=0;
-                String maMuon = String.valueOf(tblMuontraSach2.getValueAt(row, 1));
-                List<ThongTinMuonTra> user_ttmt = userTTMT.getAll();
-                for(ThongTinMuonTra users : user_ttmt){
-                    if(users.getNgayTra()!=""){
-                        dem++;
+                for (int i = 0; i < tblMuontraSach2.getRowCount(); i++) {
+                    Boolean bool = Boolean.valueOf(tblMuontraSach2.getValueAt(i, 9).toString());
+                    if (bool == true) {
+                        kiemTra = true;
+                        String maMuon = String.valueOf(tblMuontraSach2.getValueAt(i, 1));
+                        thongTinMuonTraDao.remove(maMuon);
                     }
                 }
-                if (dem==0){
-                    JOptionPane.showMessageDialog(this,"Không thể xóa Đơn mượn vì đang mượn sách","Thông báo", JOptionPane.ERROR_MESSAGE );
-                }
-                else
-                {
-                    userTTMT.remove(maMuon);
-                    JOptionPane.showConfirmDialog(this, "Xóa phiếu mượn thành công");
-                    txtMaMuon2.setText("");
-        txtMaDG2.setText("");
-        CbbTenSach2.setSelectedIndex(0);
-        List<TuaSach> user_TS = userTS.getAll();
-        for(TuaSach users : user_TS){
-            CbbTenSach2.addItem(users.getTenTS());
-        }
-        txtGhichu2.setText("");
-        txtSoluong2.setText("");
-                   ShowMuonTra();
 
+                if (!kiemTra) {
+                    String maMuon = String.valueOf(tblMuontraSach2.getValueAt(row, 1));
+                    thongTinMuonTraDao.remove(maMuon);
                 }
+
+                txtMaMuon2.setText("");
+                txtMaDG2.setText("");
+                CbbTenSach2.setSelectedIndex(0);
+                List<TuaSach> user_TS = userTS.getAll();
+                for (TuaSach users : user_TS) {
+                    CbbTenSach2.addItem(users.getTenTS());
+                }
+                txtGhichu2.setText("");
+                txtSoluong2.setText("");
+                int selectedPage = Integer.parseInt(cbbMuon.getSelectedItem().toString());
+                ShowMuonTra(thongTinMuonTraDao.getByPage(maxPageItem, selectedPage), (selectedPage - 1) * maxPageItem);
+                JOptionPane.showConfirmDialog(this, "Xóa phiếu mượn thành công");
 
             }
 
@@ -486,19 +538,12 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         txtMaDG2.setText("");
         CbbTenSach2.setSelectedIndex(0);
         List<TuaSach> user_TS = userTS.getAll();
-        for(TuaSach users : user_TS){
+        for (TuaSach users : user_TS) {
             CbbTenSach2.addItem(users.getTenTS());
         }
         txtGhichu2.setText("");
         txtSoluong2.setText("");
-        //        try {
-            //            txtNgayMuon2.setDate(f.parse(""));
-            //            txtNgayHenTra2.setDate(f.parse(""));
-            //            txtNgayTra2.setDate(f.parse(""));
-            //        } catch (ParseException ex) {
-            //            Logger.getLogger(Giaodien.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
-        ShowMuonTra();
+        ShowMuonTra(thongTinMuonTraDao.getByPage(maxPageItem, 1), 0);
     }//GEN-LAST:event_btnCapnhat2ActionPerformed
 
     private void btnThem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem2ActionPerformed
@@ -524,9 +569,15 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         thongTinMuonTra.setNgayMuon(ngayMuon);
         thongTinMuonTra.setNgayHenTra(ngayHenTra);
         thongTinMuonTra.setNgayTra(ngayTra);
-        userTTMT.insert(thongTinMuonTra);
-        JOptionPane.showConfirmDialog(this, "Thêm phiếu mượn thành công");
-        ShowMuonTra();
+        thongTinMuonTra.setGhiChu(txtGhichu2.getText());
+        thongTinMuonTraDao.insert(thongTinMuonTra);
+
+        int totalPage = thongTinMuonTraDao.getTotalPage(maxPageItem);
+        if (totalPage == cbbMuon.getItemCount() + 1) {
+            cbbMuon.addItem(String.valueOf(totalPage));
+        }
+        cbbMuon.setSelectedIndex(totalPage - 1);
+
         txtMaMuon2.setText("");
         txtMaDG2.setText("");
         CbbTenSach2.setSelectedIndex(0);
@@ -536,6 +587,8 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         }
         txtGhichu2.setText("");
         txtSoluong2.setText("");
+
+        JOptionPane.showConfirmDialog(this, "Thêm phiếu mượn thành công");
     }//GEN-LAST:event_btnThem2ActionPerformed
 
     private void btnLuu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu2ActionPerformed
@@ -547,12 +600,13 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         thongTinMuonTra.setMaDG(txtMaDG2.getText());
         String tensach = String.valueOf(CbbTenSach2.getSelectedItem());
         List<TuaSach> user_TS = userTS.getAll();
-        for(TuaSach user : user_TS){
-            if(user.getTenTS().equals(tensach)){
+        for (TuaSach user : user_TS) {
+            if (user.getTenTS().equals(tensach)) {
                 List<DauSach> user_DS = userDS.getAll();
-                for(DauSach users : user_DS){
-                    if (user.getMaTS().equals(users.getMaTS()))
-                    thongTinMuonTra.setMaDS(users.getMaDS());
+                for (DauSach users : user_DS) {
+                    if (user.getMaTS().equals(users.getMaTS())) {
+                        thongTinMuonTra.setMaDS(users.getMaDS());
+                    }
                 }
             }
         }
@@ -561,39 +615,44 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         thongTinMuonTra.setNgayMuon(ngayMuon);
         thongTinMuonTra.setNgayHenTra(ngayHenTra);
         thongTinMuonTra.setNgayTra(ngayTra);
+        thongTinMuonTra.setGhiChu(txtGhichu2.getText());
         List<ThongTinMuonTra> list = new ArrayList<ThongTinMuonTra>();
         list.add(thongTinMuonTra);
-        userTTMT.update(thongTinMuonTra);
-        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        thongTinMuonTraDao.update(thongTinMuonTra);
+
         txtMaMuon2.setText("");
         txtMaDG2.setText("");
         CbbTenSach2.setSelectedIndex(0);
         List<TuaSach> user_TS1 = userTS.getAll();
-        for(TuaSach users : user_TS1){
+        for (TuaSach users : user_TS1) {
             CbbTenSach2.addItem(users.getTenTS());
         }
         txtGhichu2.setText("");
         txtSoluong2.setText("");
         ShowMuonTra();
+        int selectedPage = Integer.parseInt(cbbMuon.getSelectedItem().toString());
+        ShowMuonTra(thongTinMuonTraDao.getByPage(maxPageItem, selectedPage), (selectedPage - 1) * maxPageItem);
+        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
     }//GEN-LAST:event_btnLuu2ActionPerformed
 
     private void btTracuu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu2ActionPerformed
         // TODO add your handling code here:
-        String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Độc giả",JOptionPane.INFORMATION_MESSAGE);
+        String str = JOptionPane.showInputDialog(this, "Vui lòng nhập tên Độc giả", JOptionPane.INFORMATION_MESSAGE);
+        if (str != null) {
+            List<DocGia> user_DG = userDG.findByName(str);
+            for (DocGia user : user_DG) {
 
-        List<DocGia> user_DG = userDG.findByName(str);
-        for(DocGia user : user_DG){
-
-            List<ThongTinMuonTra> user_TTMT = userTTMT.findByName(user.getMaDG());
-            int sttttmt=0;
-            modelMuonSach.setRowCount(0);
-            for(ThongTinMuonTra users : user_TTMT){
-                sttttmt++;
-                modelMuonSach.addRow(new Object[]{sttttmt, users.getMaMuon(), users.getMaDG(), users.getMaDS(), users.getSoLuong(), users.getNgayMuon(), users.getNgayHenTra(), users.getNgayTra(), users.getGhiChu()});
-            }
-            if (modelMuonSach.getRowCount()==0){
-                JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
-                ShowMuonTra();
+                List<ThongTinMuonTra> user_TTMT = thongTinMuonTraDao.findByName(user.getMaDG());
+                int sttttmt = 0;
+                modelMuonSach.setRowCount(0);
+                for (ThongTinMuonTra users : user_TTMT) {
+                    sttttmt++;
+                    modelMuonSach.addRow(new Object[]{sttttmt, users.getMaMuon(), users.getMaDG(), users.getMaDS(), users.getSoLuong(), users.getNgayMuon(), users.getNgayHenTra(), users.getNgayTra(), users.getGhiChu()});
+                }
+                if (modelMuonSach.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    ShowMuonTra();
+                }
             }
         }
 
@@ -602,45 +661,59 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
     private void tblMuontraSach2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMuontraSach2MouseClicked
         // TODO add your handling code here:
         int row = tblMuontraSach2.getSelectedRow();
-                txtMaMuon2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 1)));
-                txtMaDG2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 2)));
-                String string = String.valueOf(tblMuontraSach2.getValueAt(row, 3));
-                List<ThongTinMuonTra> user_TTMT2 = userTTMT.getAll();
-                for (ThongTinMuonTra user : user_TTMT2) {
-                    List<DauSach> user_DS2 = userDS.getAll();
-                    for (DauSach users : user_DS2) {
-                        if (string.equals(users.getMaDS())) {
-                            List<TuaSach> user_TS2 = userTS.getAll();
-                            for (TuaSach userss : user_TS2) {
-                                if (users.getMaTS().equals(userss.getMaTS())) {
-                                    CbbTenSach2.setSelectedItem(userss.getTenTS());
-                                }
-                            }
+        txtMaMuon2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 1)));
+        txtMaDG2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 2)));
+        String string = String.valueOf(tblMuontraSach2.getValueAt(row, 3));
+        List<ThongTinMuonTra> user_TTMT2 = thongTinMuonTraDao.getAll();
+        for (ThongTinMuonTra user : user_TTMT2) {
+            List<DauSach> user_DS2 = userDS.getAll();
+            for (DauSach users : user_DS2) {
+                if (string.equals(users.getMaDS())) {
+                    List<TuaSach> user_TS2 = userTS.getAll();
+                    for (TuaSach userss : user_TS2) {
+                        if (users.getMaTS().equals(userss.getMaTS())) {
+                            CbbTenSach2.setSelectedItem(userss.getTenTS());
                         }
                     }
                 }
-                txtSoluong2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 4)));
-                txtGhichu2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 8)));
-                     
-                String str1 = String.valueOf(tblMuontraSach2.getValueAt(row, 5));
-                String str2 = String.valueOf(tblMuontraSach2.getValueAt(row, 6));
-                String str3="";
-                if(String.valueOf(tblMuontraSach2.getValueAt(row, 7))!=null){
-                    str3+=String.valueOf(tblMuontraSach2.getValueAt(row, 7));
-                }
-                else
-                    str3="";
-                try {
-                    Date NgayMuon = f.parse(str1);
-                    Date NgayHenTra = f.parse(str2);
-                    Date NgayTra = f.parse(str3);
-                        txtNgayMuon2.setDate(NgayMuon);
-                        txtNgayHenTra2.setDate(NgayHenTra);
-                        txtNgayTra2.setDate(NgayTra);
-                } catch (ParseException ex) {
-                    Logger.getLogger(ThongTinMuonSachPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            }
+        }
+        txtSoluong2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 4)));
+        txtGhichu2.setText(String.valueOf(tblMuontraSach2.getValueAt(row, 8)));
+
+        String str1 = String.valueOf(tblMuontraSach2.getValueAt(row, 5));
+        String str2 = String.valueOf(tblMuontraSach2.getValueAt(row, 6));
+        String str3 = "";
+        if (String.valueOf(tblMuontraSach2.getValueAt(row, 7)) != null) {
+            str3 += String.valueOf(tblMuontraSach2.getValueAt(row, 7));
+        } else {
+            str3 = "";
+        }
+        try {
+            Date NgayMuon = f.parse(str1);
+            Date NgayHenTra = f.parse(str2);
+            Date NgayTra = f.parse(str3);
+            txtNgayMuon2.setDate(NgayMuon);
+            txtNgayHenTra2.setDate(NgayHenTra);
+            txtNgayTra2.setDate(NgayTra);
+        } catch (ParseException ex) {
+            Logger.getLogger(ThongTinMuonSachPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tblMuontraSach2MouseClicked
+
+    private void btnTiepTheoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTiepTheoActionPerformed
+        int totalPage = thongTinMuonTraDao.getTotalPage(maxPageItem);
+        cbbMuon.setSelectedIndex(cbbMuon.getSelectedIndex() == totalPage - 1 ? totalPage - 1 : cbbMuon.getSelectedIndex() + 1);
+    }//GEN-LAST:event_btnTiepTheoActionPerformed
+
+    private void cbbMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbMuonActionPerformed
+        int selectedPage = Integer.parseInt(cbbMuon.getSelectedItem().toString());
+        ShowMuonTra(thongTinMuonTraDao.getByPage(maxPageItem, selectedPage), (selectedPage - 1) * maxPageItem);
+    }//GEN-LAST:event_cbbMuonActionPerformed
+
+    private void btnTruocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTruocActionPerformed
+        cbbMuon.setSelectedIndex(cbbMuon.getSelectedIndex() == 0 ? 0 : cbbMuon.getSelectedIndex() - 1);
+    }//GEN-LAST:event_btnTruocActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -649,10 +722,13 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCapnhat2;
     private javax.swing.JButton btnLuu2;
     private javax.swing.JButton btnThem2;
+    private javax.swing.JButton btnTiepTheo;
+    private javax.swing.JButton btnTruoc;
     private javax.swing.JButton btnXoa2;
+    private javax.swing.JComboBox<String> cbbMuon;
     private javax.swing.JButton jButton15;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;

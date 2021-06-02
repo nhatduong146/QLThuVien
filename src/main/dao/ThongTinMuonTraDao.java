@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import main.model.ThongTinMuonTra;
+import main.model.ThongTinMuonTra;
 
 /**
  *
@@ -59,7 +60,7 @@ public class ThongTinMuonTraDao {
     }
     
     public void update(ThongTinMuonTra thongTinMuonTra){
-        String sql = "Update tblMuon SET MaDocGia = ?, MaDauSach = ?, SoLuong = ?, "
+        String sql = "Update tblMuon SET MaMuon = ?, MaDauSach = ?, SoLuong = ?, "
                 + "NgayMuon = ?, NgayHenTra = ?, NgayTra = ?, GhiChu = ?"
                 + " WHERE MaMuon = ?";
         PreparedStatement ps = null;
@@ -92,7 +93,7 @@ public class ThongTinMuonTraDao {
     
     public List<ThongTinMuonTra> findByName(String maDG){
         List<ThongTinMuonTra> list = new ArrayList<>();
-        String sql = "SELECT * FROM tblMuon WHERE MaDocGia = ?";
+        String sql = "SELECT * FROM tblMuon WHERE MaMuon = ?";
         System.out.println(maDG);
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -130,8 +131,59 @@ public class ThongTinMuonTraDao {
         return 0;
     }
     
+    public int getTotalItem(){
+        String sql = "SELECT COUNT(MaMuon)\n" +
+                        "FROM tblMuon";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+                return rs.getInt(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    
+    public int getTotalPage(int maxPageItem){
+        if(getTotalItem()%maxPageItem == 0)
+            return getTotalItem()/maxPageItem;
+        else
+            return getTotalItem()/maxPageItem + 1; 
+    }
+    
+    public List<ThongTinMuonTra> getByPage(int maxPageItem, int page){
+        List<ThongTinMuonTra> list = new ArrayList<ThongTinMuonTra>();
+        String sql =    "SELECT * FROM tblMuon\n" +
+                        "Order by MaMuon\n" +
+                        "OFFSET ? ROWS\n" +
+                        "FETCH NEXT ? ROWS ONLY";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, (page-1)*maxPageItem);
+            ps.setInt(2, maxPageItem);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                list.add(new ThongTinMuonTra(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), 
+                                        rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
     public static void main(String[] args) {
         ThongTinMuonTraDao thongTinMuonTraDao = new ThongTinMuonTraDao();
         System.out.println(thongTinMuonTraDao.getQuantityByMonth("Jan"));
+        System.out.println(thongTinMuonTraDao.getByPage(8, 2));
     }
 }
