@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/view/NhaSanXuatVaTacGiaPanel.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/view/TheLoaiVaTuaSachPanel.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/dao/DocGiaDao.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/view/DocGiaPanel.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/model/TheLoai.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/view/DauSachPanel.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/dao/KetNoiSQL.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/view/ThongTinMuonSachPanel.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/view/GiaoDienChinh.java</file>
-            <file>file:/D:/School/QLThuVien/QLThuVien/src/main/dao/DauSachDao.java</file>
+            <file>file:/C:/Users/K2001/Desktop/livrary/QLThuVien/src/main/view/ThongTinMuonSachPanel.java</file>
+            <file>file:/C:/Users/K2001/Desktop/livrary/QLThuVien/src/main/dao/KetNoiSQL.java</file>
+            <file>file:/C:/Users/K2001/Desktop/livrary/QLThuVien/src/main/dao/DauSachDao.java</file>
+            <file>file:/C:/Users/K2001/Desktop/livrary/QLThuVien/src/main/view/GiaoDienChinh.java</file>
+            <file>file:/C:/Users/K2001/Desktop/livrary/QLThuVien/src/main/dao/ThongTinMuonTraDao.java</file>
+            <file>file:/C:/Users/K2001/Desktop/livrary/QLThuVien/src/main/view/DauSachPanel.java</file>
+            <file>file:/C:/Users/K2001/Desktop/livrary/QLThuVien/src/main/dao/TuaSachDao.java</file>
         </group>
     </open-files>
 </project-private>

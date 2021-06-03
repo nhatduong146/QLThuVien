@@ -93,7 +93,7 @@ public class ThongTinMuonTraDao {
     
     public List<ThongTinMuonTra> findByName(String maDG){
         List<ThongTinMuonTra> list = new ArrayList<>();
-        String sql = "SELECT * FROM tblMuon WHERE MaMuon = ?";
+        String sql = "SELECT * FROM tblMuon WHERE MaDocGia = ?";
         System.out.println(maDG);
         PreparedStatement ps = null;
         ResultSet rs = null;

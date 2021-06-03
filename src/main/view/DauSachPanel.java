@@ -502,6 +502,10 @@ public class DauSachPanel extends javax.swing.JPanel {
 
         DauSach dauSach = new DauSach();
         List<TuaSach> user_TS = userTS.getAll();
+        if (txtTenSach3.getText().equals("")){
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập đầy đủ thông tin");
+        }
+        else{
         int dem1 = 0;
         int dem2 = 0;
         for (TuaSach users : user_TS) {
@@ -532,24 +536,27 @@ public class DauSachPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Không có tên Nhà xuất bản bạn đã nhập!\n Vui lòng kiểm tra lại", "Thông báo", JOptionPane.ERROR_MESSAGE);
             } else {
 
-                dauSachDao.insert(dauSach);
-
-                int totalPage = dauSachDao.getTotalPage(maxPageItem);
-                if (totalPage == cbbDauSach.getItemCount() + 1)
-                    cbbDauSach.addItem(String.valueOf(totalPage));
-                cbbDauSach.setSelectedIndex(totalPage - 1);
-
-                txtMaDauSach3.setText("");
-                txtTenSach3.setText("");
-                txttheloai3.setText("");
-                txtTacGia3.setText("");
-                RdbtnChuamuon4.setSelected(false);
-                RdbtnDamuon4.setSelected(false);
-                txtNDtomluoc3.setText("");
-                txtNgonNgu3.setText("");
-                txtTenNXB3.setText("");
                 
-                JOptionPane.showConfirmDialog(this, "Thêm đầu sách thành công");
+
+                    int totalPage = dauSachDao.getTotalPage(maxPageItem);
+                    if (totalPage == cbbDauSach.getItemCount() + 1) {
+                        cbbDauSach.addItem(String.valueOf(totalPage));
+                    }
+                    cbbDauSach.setSelectedIndex(totalPage - 1);
+
+                    txtMaDauSach3.setText("");
+                    txtTenSach3.setText("");
+                    txttheloai3.setText("");
+                    txtTacGia3.setText("");
+                    RdbtnChuamuon4.setSelected(false);
+                    RdbtnDamuon4.setSelected(false);
+                    txtNDtomluoc3.setText("");
+                    txtNgonNgu3.setText("");
+                    txtTenNXB3.setText("");
+
+                    JOptionPane.showConfirmDialog(this, "Thêm đầu sách thành công");
+                }
+
             }
         }
     }//GEN-LAST:event_btnThem3ActionPerformed
@@ -610,21 +617,23 @@ public class DauSachPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String str = JOptionPane.showInputDialog(this, "Vui lòng nhập tên Tựa sách", JOptionPane.INFORMATION_MESSAGE);
         if (str != null) {
+            modelDauSach.setRowCount(0);
             List<TuaSach> tuasach = userTS.findByName(str);
             for (TuaSach user : tuasach) {
                 List<DauSach> dausach = dauSachDao.findByName(user.getMaTS());
                 int stt = 0;
-                modelDauSach.setRowCount(0);
+
                 for (DauSach show : dausach) {
-                    txtTenSach3.setText(show.getMaDS());
+
                     stt++;
                     modelDauSach.addRow(new Object[]{stt, show.getMaDS(), show.getMaTS(), show.getNgonNgu(), show.getMaNXB()});
 
                 }
-                if (modelDauSach.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(this, "Không tìm thấy", "Thông báo", JOptionPane.ERROR_MESSAGE);
-                    ShowDauSach();
-                }
+
+            }
+            if (modelDauSach.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                ShowDauSach();
             }
         }
     }//GEN-LAST:event_btTracuu3ActionPerformed

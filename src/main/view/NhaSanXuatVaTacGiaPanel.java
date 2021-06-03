@@ -30,6 +30,7 @@ import main.model.TacGia;
  * @author Admin
  */
 public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
+
     DefaultTableModel modelNhaSanXuat;
     DefaultTableModel modelTacGia;
 
@@ -40,7 +41,8 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
     TacGiaDao userTG;
     TheLoaiDao userTL;
     TuaSachDao userTS;
-  SimpleDateFormat f= new SimpleDateFormat("MMMM dd, yyyy"); 
+    SimpleDateFormat f = new SimpleDateFormat("MMMM dd, yyyy");
+
     /**
      * Creates new form NSX_TagiaJPanel
      */
@@ -59,25 +61,27 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         modelTacGia.addColumn("STT");
         modelTacGia.addColumn("Mã tác giả");
         modelTacGia.addColumn("Tên tác giả");
-        
+
         tblNhaSanXuat4.setRowHeight(40);
         tblTacgia4.setRowHeight(40);
         tblNhaSanXuat4.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblTacgia4.getColumnModel().getColumn(0).setPreferredWidth(10);
-        
+
         ShowTacGia();
     }
-    public void ShowNSX(){
-        List<NhaXuatBan> user_NXB= userNXB.getAll();
+
+    public void ShowNSX() {
+        List<NhaXuatBan> user_NXB = userNXB.getAll();
         int stt = 0;
         modelNhaSanXuat.setRowCount(0);
         for (NhaXuatBan users : user_NXB) {
             stt++;
             modelNhaSanXuat.addRow(new Object[]{stt, users.getMaNXB(), users.getTenNXB()});
         }
-       }
-    public void ShowTacGia(){
-    List<TacGia> user_TG = userTG.getAll();
+    }
+
+    public void ShowTacGia() {
+        List<TacGia> user_TG = userTG.getAll();
         int stt = 0;
         modelTacGia.setRowCount(0);
         for (TacGia users : user_TG) {
@@ -85,6 +89,7 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
             modelTacGia.addRow(new Object[]{stt, users.getMaTG(), users.getHoten()});
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -325,7 +330,7 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
 
     private void btTracuu4_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu4_1ActionPerformed
         // TODO add your handling code here:
-        String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Nhà xuất bản.",JOptionPane.INFORMATION_MESSAGE);
+        String str = JOptionPane.showInputDialog(this, "Vui lòng nhập tên Nhà xuất bản.", JOptionPane.INFORMATION_MESSAGE);
 
         modelNhaSanXuat.setRowCount(0);
         List<NhaXuatBan> user_NXB = userNXB.findByName(str);
@@ -334,10 +339,10 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
             sttnxb++;
             modelNhaSanXuat.addRow(new Object[]{sttnxb, users.getMaNXB(), users.getTenNXB()});
         }
-        if (modelNhaSanXuat.getRowCount()==0){
-            JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
+        if (modelNhaSanXuat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy", "Thông báo", JOptionPane.ERROR_MESSAGE);
             List<NhaXuatBan> user_NXB2 = userNXB.getAll();
-           ShowTacGia();
+            ShowTacGia();
         }
     }//GEN-LAST:event_btTracuu4_1ActionPerformed
 
@@ -345,18 +350,17 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int row = tblNhaSanXuat4.getSelectedRow();
-        if (row == -1){
-            JOptionPane.showMessageDialog(this,"Vui lòng chọn Nhà xuất bản muốn xóa","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }else
-        {
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Nhà xuất bản muốn xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
             int confident = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa Nhà xuất bản này hay không!");
             if (confident == JOptionPane.YES_OPTION) {
                 String maNXB = String.valueOf(tblNhaSanXuat4.getValueAt(row, 1));
                 userNXB.remove(maNXB);
                 JOptionPane.showConfirmDialog(this, "Xóa nhà xuất bản thàng công");
                 txtTenNhaSX4.setText("");
-        txtMaNXB4.setText("");
-             ShowNSX();
+                txtMaNXB4.setText("");
+                ShowNSX();
 
             }
         }
@@ -374,15 +378,18 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         NhaXuatBan nhaXuatBan = new NhaXuatBan();
         nhaXuatBan.setTenNXB(txtTenNhaSX4.getText());
-        List<NhaXuatBan> list = new ArrayList<NhaXuatBan>();
-        list.add(nhaXuatBan);
-        userNXB.insert(nhaXuatBan);
-        JOptionPane.showConfirmDialog(this, "Thêm thành công");
-        txtTenNhaSX4.setText("");
-        txtMaNXB4.setText("");
-        txtTenNhaSX4.setText("");
-        txtMaNXB4.setText("");
-        ShowNSX();
+        if (!txtTenNhaSX4.getText().equals("")) {
+            userNXB.insert(nhaXuatBan);
+            txtTenNhaSX4.setText("");
+            txtMaNXB4.setText("");
+            txtTenNhaSX4.setText("");
+            txtMaNXB4.setText("");
+            ShowNSX();
+            JOptionPane.showConfirmDialog(this, "Thêm thành công");
+        } else {
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập tên nhà sản xuất");
+        }
+
     }//GEN-LAST:event_btnThem4ActionPerformed
 
     private void btnLuu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu4ActionPerformed
@@ -390,16 +397,21 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         NhaXuatBan nhaXuatBan = new NhaXuatBan();
         nhaXuatBan.setMaNXB(txtMaNXB4.getText());
         nhaXuatBan.setTenNXB(txtTenNhaSX4.getText());
-        List<NhaXuatBan> list = new ArrayList<NhaXuatBan>();
-        list.add(nhaXuatBan);
-        userNXB.update(nhaXuatBan);
-        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
-        ShowNSX();
+        if (!txtTenNhaSX4.getText().equals("")) {
+            userNXB.update(nhaXuatBan);
+            txtTenNhaSX4.setText("");
+            txtMaNXB4.setText("");
+            txtTenNhaSX4.setText("");
+            txtMaNXB4.setText("");
+            ShowNSX();
+            JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        } else
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập tên nhà sản xuất");
     }//GEN-LAST:event_btnLuu4ActionPerformed
 
     private void btTracuu4_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu4_2ActionPerformed
         // TODO add your handling code here:
-        String str = JOptionPane.showInputDialog(this,"Vui lòng nhập tên Tác giả.",JOptionPane.INFORMATION_MESSAGE);
+        String str = JOptionPane.showInputDialog(this, "Vui lòng nhập tên Tác giả.", JOptionPane.INFORMATION_MESSAGE);
 
         modelTacGia.setRowCount(0);
         List<TacGia> user_TG = userTG.findByName(str);
@@ -408,8 +420,8 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
             stttg++;
             modelTacGia.addRow(new Object[]{stttg, users.getMaTG(), users.getHoten()});
         }
-        if (modelTacGia.getRowCount()==0){
-            JOptionPane.showMessageDialog(this,"Không tìm thấy","Thông báo", JOptionPane.ERROR_MESSAGE );
+        if (modelTacGia.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy", "Thông báo", JOptionPane.ERROR_MESSAGE);
             ShowTacGia();
         }
     }//GEN-LAST:event_btTracuu4_2ActionPerformed
@@ -417,17 +429,16 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
     private void btnXoa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa5ActionPerformed
         // TODO add your handling code here:
         int row = tblTacgia4.getSelectedRow();
-        if (row == -1){
-            JOptionPane.showMessageDialog(this,"Vui lòng chọn Tác giá muốn xóa","Thông báo", JOptionPane.ERROR_MESSAGE );
-        }else
-        {
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn Tác giá muốn xóa", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
             int confident = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa Tác giả này hay không!");
             if (confident == JOptionPane.YES_OPTION) {
                 String maTG = String.valueOf(tblTacgia4.getValueAt(row, 1));
                 userTG.remove(maTG);
                 JOptionPane.showConfirmDialog(this, "Xóa thành công");
-                  txtMaTacGia4.setText("");
-        txtTenTacgia4.setText("");
+                txtMaTacGia4.setText("");
+                txtTenTacgia4.setText("");
                 ShowTacGia();
             }
         }
@@ -437,20 +448,21 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         txtMaTacGia4.setText("");
         txtTenTacgia4.setText("");
-       ShowTacGia();
+        ShowTacGia();
     }//GEN-LAST:event_btnCapnhat5ActionPerformed
 
     private void btnThem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem5ActionPerformed
         // TODO add your handling code here:
         TacGia tacGia = new TacGia();
         tacGia.setHoten(txtTenTacgia4.getText());
-        List<TacGia> list = new ArrayList<TacGia>();
-        list.add(tacGia);
-        userTG.insert(tacGia);
-        JOptionPane.showConfirmDialog(this, "Thêm thành công");
-          txtMaTacGia4.setText("");
-        txtTenTacgia4.setText("");
-        ShowTacGia();
+        if (!txtTenTacgia4.getText().equals("")) {
+            userTG.insert(tacGia);
+            txtMaTacGia4.setText("");
+            txtTenTacgia4.setText("");
+            ShowTacGia();
+            JOptionPane.showConfirmDialog(this, "Thêm thành công");
+        } else
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập tên tác giả!");
     }//GEN-LAST:event_btnThem5ActionPerformed
 
     private void btnLuu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu5ActionPerformed
@@ -458,27 +470,30 @@ public class NhaSanXuatVaTacGiaPanel extends javax.swing.JPanel {
         TacGia tacGia = new TacGia();
         tacGia.setMaTG(txtMaTacGia4.getText());
         tacGia.setHoten(txtTenTacgia4.getText());
-        
-        userTG.update(tacGia);
-        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
-          txtMaTacGia4.setText("");
-        txtTenTacgia4.setText("");
-        ShowTacGia();
+
+        if (!txtTenTacgia4.getText().equals("")) {
+            userTG.update(tacGia);
+            txtMaTacGia4.setText("");
+            txtTenTacgia4.setText("");
+            ShowTacGia();
+            JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        } else
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập tên tác giả!");
     }//GEN-LAST:event_btnLuu5ActionPerformed
 
     private void tblNhaSanXuat4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhaSanXuat4MouseClicked
         // TODO add your handling code here:
         int row = tblNhaSanXuat4.getSelectedRow();
-                txtMaNXB4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 1)));
-                txtTenNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 2)));
+        txtMaNXB4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 1)));
+        txtTenNhaSX4.setText(String.valueOf(tblNhaSanXuat4.getValueAt(row, 2)));
     }//GEN-LAST:event_tblNhaSanXuat4MouseClicked
 
     private void tblTacgia4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTacgia4MouseClicked
         // TODO add your handling code here:
-        
+
         int row = tblTacgia4.getSelectedRow();
-                txtMaTacGia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 1)));
-                txtTenTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 2)));
+        txtMaTacGia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 1)));
+        txtTenTacgia4.setText(String.valueOf(tblTacgia4.getValueAt(row, 2)));
     }//GEN-LAST:event_tblTacgia4MouseClicked
 
 

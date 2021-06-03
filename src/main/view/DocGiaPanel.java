@@ -265,10 +265,10 @@ public class DocGiaPanel extends javax.swing.JPanel {
         ));
         tblDocGia1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblDocGia1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblDocGia1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -308,7 +308,7 @@ public class DocGiaPanel extends javax.swing.JPanel {
                 btnCapnhat1ActionPerformed(evt);
             }
         });
-        jPanel28.add(btnCapnhat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, 41));
+        jPanel28.add(btnCapnhat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 41));
 
         btnXoa1.setBackground(new java.awt.Color(0, 102, 153));
         btnXoa1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -408,27 +408,33 @@ public class DocGiaPanel extends javax.swing.JPanel {
         }
         DocGia docGia = new DocGia();
         docGia.setHoten(txtHoTen1.getText());
+
         docGia.setDiaChi(txtDiaChi1.getText());
         docGia.setGioiTinh(gioitinh);
         docGia.setSdt(txtSoDT1.getText());
         docGia.setNgaySinh(ngaySinh);
         docGia.setNgayDK(ngayDK);
         docGia.setNgayHetHan(ngayEndDK);
-        docGiaDao.insert(docGia);
 
-        int totalPage = docGiaDao.getTotalPage(maxPageItem);
-        if (totalPage == cbbDocGia.getItemCount() + 1) {
-            cbbDocGia.addItem(String.valueOf(totalPage));
+        if (!docGia.getHoten().equals("")) {
+            int totalPage = docGiaDao.getTotalPage(maxPageItem);
+            if (totalPage == cbbDocGia.getItemCount() + 1) {
+                cbbDocGia.addItem(String.valueOf(totalPage));
+            }
+            cbbDocGia.setSelectedIndex(totalPage - 1);
+            docGiaDao.insert(docGia);
+            txtHoTen1.setText("");
+            txtMaDocGia1.setText("");
+            txtDiaChi1.setText("");
+            txtSoDT1.setText("");
+            RdbtnNam1.setSelected(false);
+            RdbtnNu1.setSelected(false);
+
+            JOptionPane.showConfirmDialog(this, "Thêm thành công");
+        } else {
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập đầy đủ thông tin");
+
         }
-        cbbDocGia.setSelectedIndex(totalPage - 1);
-
-        txtHoTen1.setText("");
-        txtMaDocGia1.setText("");
-        txtDiaChi1.setText("");
-        txtSoDT1.setText("");
-        RdbtnNam1.setSelected(false);
-        RdbtnNu1.setSelected(false);
-        JOptionPane.showConfirmDialog(this, "Thêm thành công");
     }//GEN-LAST:event_btnThem1ActionPerformed
 
     private void btnCapnhat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapnhat1ActionPerformed
@@ -507,13 +513,16 @@ public class DocGiaPanel extends javax.swing.JPanel {
         docGia.setSdt(txtSoDT1.getText());
         docGia.setNgaySinh(ngaySinh);
         docGia.setNgayDK(ngayDK);
-        docGia.setNgayHetHan(ngayEndDK);
-        docGiaDao.update(docGia);
-        ShowDocGia();
-        int selectedPage = Integer.parseInt(cbbDocGia.getSelectedItem().toString());
-        ShowDocGia(docGiaDao.getByPage(maxPageItem, selectedPage), (selectedPage - 1) * maxPageItem);
-        JOptionPane.showConfirmDialog(this, "Cập nhật thành thành công");
-
+        if (!txtHoTen1.getText().equals("")) {
+            docGia.setNgayHetHan(ngayEndDK);
+            docGiaDao.update(docGia);
+            ShowDocGia();
+            int selectedPage = Integer.parseInt(cbbDocGia.getSelectedItem().toString());
+            ShowDocGia(docGiaDao.getByPage(maxPageItem, selectedPage), (selectedPage - 1) * maxPageItem);
+            JOptionPane.showConfirmDialog(this, "Cập nhật thành thành công");
+        } else {
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập đầy đủ thông tin");
+        }
 
     }//GEN-LAST:event_btnLuu1ActionPerformed
 

@@ -414,7 +414,6 @@
                       <Image iconType="3" name="/icon/resources/floppy-disk (1).png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Update"/>
-                    <Property name="actionCommand" type="java.lang.String" value="Update"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLuu3ActionPerformed"/>

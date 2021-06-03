@@ -80,12 +80,12 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         modelTuaSach.addColumn("Mã thể loại");
         modelTuaSach.addColumn("Tóm tắt");
         modelTuaSach.addColumn("Số lượng");
-        
+
         tblTheLoai5.setRowHeight(40);
         tblTuaSach5.setRowHeight(40);
         tblTheLoai5.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblTuaSach5.getColumnModel().getColumn(0).setPreferredWidth(10);
-        
+
         ShowTuaSach();
         List<TacGia> tacgia = userTG.getAll();
         for (TacGia show : tacgia) {
@@ -480,21 +480,24 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         tuaSach.setMaTG(String.valueOf(cbbMaTacGia5.getSelectedItem()));
         tuaSach.setMaTL(String.valueOf(cbbMaTheLoai5.getSelectedItem()));
         tuaSach.setTomTat(txtNDtomtat5.getText());
+       
+        if (txtTentuaSach5.getText().equals("")){
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập đầy đủ thông tin");
+        }
+        
+        else
+        {
         tuaSach.setSoLuong(Integer.valueOf(txtSoLuong5.getText()));
-        List<TuaSach> list = new ArrayList<TuaSach>();
-        list.add(tuaSach);
         userTS.insert(tuaSach);
-        JOptionPane.showConfirmDialog(this, "Thêm thành công");
         ShowTuaSach();
+        
         txtMaTuaSach5.setText("");
         txtTentuaSach5.setText("");
         cbbMaTacGia5.setSelectedIndex(0);
-
         cbbMaTheLoai5.setSelectedIndex(0);
-
         txtSoLuong5.setText("");
-
         txtNDtomtat5.setText("");
+        JOptionPane.showConfirmDialog(this, "Thêm thành công");}
 
 
     }//GEN-LAST:event_btnThem6ActionPerformed
@@ -508,18 +511,18 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         tuaSach.setMaTL(String.valueOf(cbbMaTheLoai5.getSelectedItem()));
         tuaSach.setTomTat(txtNDtomtat5.getText());
         tuaSach.setSoLuong(Integer.valueOf(txtSoLuong5.getText()));
+         if (!txtTentuaSach5.getText().equals("") && !txtSoLuong5.getText().equals("")){
         userTS.update(tuaSach);
-        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
         ShowTuaSach();
         txtMaTuaSach5.setText("");
         txtTentuaSach5.setText("");
         cbbMaTacGia5.setSelectedIndex(0);
-
         cbbMaTheLoai5.setSelectedIndex(0);
-
         txtSoLuong5.setText("");
-
         txtNDtomtat5.setText("");
+        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");}
+        else
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập đầy đủ thông tin!");
 
     }//GEN-LAST:event_btnLuu6ActionPerformed
 
@@ -571,11 +574,14 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         TheLoai theLoai = new TheLoai();
         theLoai.setTenTL(txtTenTheLoai5.getText());
-        List<TheLoai> list = new ArrayList<TheLoai>();
-        list.add(theLoai);
-        userTL.insert(theLoai);
-        JOptionPane.showConfirmDialog(this, "Thêm thành công");
-        ShowTheLoai();
+        if (!txtTenTheLoai5.getText().equals("")) {
+            userTL.insert(theLoai);
+            ShowTheLoai();
+            txtTenTheLoai5.setText("");
+            txtMaTheLoai5.setText("");
+            JOptionPane.showConfirmDialog(this, "Thêm thành công");
+        } else
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập tên thể loại");
     }//GEN-LAST:event_btnThem7ActionPerformed
 
     private void btnLuu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu7ActionPerformed
@@ -583,15 +589,14 @@ public class TheLoaiVaTuaSachPanel extends javax.swing.JPanel {
         TheLoai theLoai = new TheLoai();
         theLoai.setMaTL(txtMaTheLoai5.getText());
         theLoai.setTenTL(txtTenTheLoai5.getText());
-        List<TheLoai> list = new ArrayList<TheLoai>();
-        list.add(theLoai);
-        userTL.update(theLoai);
-        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
-        ShowTheLoai();
-        txtMaTheLoai5.setText("");
-        txtTenTheLoai5.setText("");
-        txtMaTheLoai5.setText("");
-        txtTenTheLoai5.setText("");
+        if (!txtTenTheLoai5.getText().equals("")) {
+            userTL.insert(theLoai);
+            ShowTheLoai();
+            txtTenTheLoai5.setText("");
+            txtMaTheLoai5.setText("");
+            JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+        } else
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập tên thể loại");
     }//GEN-LAST:event_btnLuu7ActionPerformed
 
     private void tblTuaSach5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTuaSach5MouseClicked

@@ -550,9 +550,14 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String ngayMuon = f.format(txtNgayMuon2.getDate());
         String ngayHenTra = f.format(txtNgayHenTra2.getDate());
-        String ngayTra = f.format(txtNgayTra2.getDate());
         ThongTinMuonTra thongTinMuonTra = new ThongTinMuonTra();
         thongTinMuonTra.setMaDG(txtMaDG2.getText());
+        if (txtMaDG2.getText().equals(""))
+        {
+                JOptionPane.showConfirmDialog(this, "Vui lòng nhập đầy đủ thông tin");
+        }
+        else
+        {
         String tensach = String.valueOf(CbbTenSach2.getSelectedItem());
         List<TuaSach> user_TS = userTS.getAll();
         for (TuaSach user : user_TS) {
@@ -568,27 +573,28 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         thongTinMuonTra.setSoLuong(Integer.valueOf(txtSoluong2.getText()));
         thongTinMuonTra.setNgayMuon(ngayMuon);
         thongTinMuonTra.setNgayHenTra(ngayHenTra);
-        thongTinMuonTra.setNgayTra(ngayTra);
         thongTinMuonTra.setGhiChu(txtGhichu2.getText());
-        thongTinMuonTraDao.insert(thongTinMuonTra);
+            thongTinMuonTraDao.insert(thongTinMuonTra);
 
-        int totalPage = thongTinMuonTraDao.getTotalPage(maxPageItem);
-        if (totalPage == cbbMuon.getItemCount() + 1) {
-            cbbMuon.addItem(String.valueOf(totalPage));
+            int totalPage = thongTinMuonTraDao.getTotalPage(maxPageItem);
+            if (totalPage == cbbMuon.getItemCount() + 1) {
+                cbbMuon.addItem(String.valueOf(totalPage));
+            }
+            cbbMuon.setSelectedIndex(totalPage - 1);
+
+            txtMaMuon2.setText("");
+            txtMaDG2.setText("");
+            CbbTenSach2.setSelectedIndex(0);
+            List<TuaSach> user_TS1 = userTS.getAll();
+            for (TuaSach users : user_TS1) {
+                CbbTenSach2.addItem(users.getTenTS());
+            }
+            txtGhichu2.setText("");
+            txtSoluong2.setText("");
+
+            JOptionPane.showConfirmDialog(this, "Thêm phiếu mượn thành công");
         }
-        cbbMuon.setSelectedIndex(totalPage - 1);
-
-        txtMaMuon2.setText("");
-        txtMaDG2.setText("");
-        CbbTenSach2.setSelectedIndex(0);
-        List<TuaSach> user_TS1 = userTS.getAll();
-        for (TuaSach users : user_TS1) {
-            CbbTenSach2.addItem(users.getTenTS());
-        }
-        txtGhichu2.setText("");
-        txtSoluong2.setText("");
-
-        JOptionPane.showConfirmDialog(this, "Thêm phiếu mượn thành công");
+        
     }//GEN-LAST:event_btnThem2ActionPerformed
 
     private void btnLuu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuu2ActionPerformed
@@ -616,23 +622,28 @@ public class ThongTinMuonSachPanel extends javax.swing.JPanel {
         thongTinMuonTra.setNgayHenTra(ngayHenTra);
         thongTinMuonTra.setNgayTra(ngayTra);
         thongTinMuonTra.setGhiChu(txtGhichu2.getText());
-        List<ThongTinMuonTra> list = new ArrayList<ThongTinMuonTra>();
-        list.add(thongTinMuonTra);
-        thongTinMuonTraDao.update(thongTinMuonTra);
+        if (!txtMaDG2.getText().equals("") && !txtSoluong2.getText().equals("")) {
+            thongTinMuonTraDao.update(thongTinMuonTra);
 
-        txtMaMuon2.setText("");
-        txtMaDG2.setText("");
-        CbbTenSach2.setSelectedIndex(0);
-        List<TuaSach> user_TS1 = userTS.getAll();
-        for (TuaSach users : user_TS1) {
-            CbbTenSach2.addItem(users.getTenTS());
-        }
-        txtGhichu2.setText("");
-        txtSoluong2.setText("");
-        ShowMuonTra();
-        int selectedPage = Integer.parseInt(cbbMuon.getSelectedItem().toString());
-        ShowMuonTra(thongTinMuonTraDao.getByPage(maxPageItem, selectedPage), (selectedPage - 1) * maxPageItem);
-        JOptionPane.showConfirmDialog(this, "Cập nhật thành công");
+            int totalPage = thongTinMuonTraDao.getTotalPage(maxPageItem);
+            if (totalPage == cbbMuon.getItemCount() + 1) {
+                cbbMuon.addItem(String.valueOf(totalPage));
+            }
+            cbbMuon.setSelectedIndex(totalPage - 1);
+
+            txtMaMuon2.setText("");
+            txtMaDG2.setText("");
+            CbbTenSach2.setSelectedIndex(0);
+            List<TuaSach> user_TS1 = userTS.getAll();
+            for (TuaSach users : user_TS1) {
+                CbbTenSach2.addItem(users.getTenTS());
+            }
+            txtGhichu2.setText("");
+            txtSoluong2.setText("");
+
+            JOptionPane.showConfirmDialog(this, "Thêm phiếu mượn thành công");
+        } else
+            JOptionPane.showConfirmDialog(this, "Vui lòng nhập đầy đủ thông tin");
     }//GEN-LAST:event_btnLuu2ActionPerformed
 
     private void btTracuu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTracuu2ActionPerformed
